@@ -3,7 +3,7 @@
  * @extends  KISSY.Base
  * @creator 槿瑟<jinse.zjw@alibaba-inc.com>
  * @version 1.0
- * @update 2014-06-26
+ * @update 2014
  * @example
  *
  *    KISSY.use('gallery/DepartureLayer/1.0/index', function(S,DepartureLayer){
@@ -159,27 +159,27 @@ KISSY.add(function(S,CORE,UA,Anim,Storage) {
 								var verticalHeight = DOM.viewportHeight()/2-266;
 								DOM.style("#container","marginTop",verticalHeight+"px");
 						});
-						S.all("#pupUplayer").delegate('click','#J_pre',function(e){
+						S.all("#pupUplayer").delegate('click','#container #slides .prev',function(e){
 								e.halt();
 								C.previous();
 								if(C.autoSlide && C.stoped === false){
 									C.stop().play();
 								}
 						});
-						S.all("#pupUplayer").delegate('click','#J_next',function(e){
+						S.all("#pupUplayer").delegate('click','#container #slides .next',function(e){
 								e.halt();
 								C.next();
 								if(C.autoSlide && C.stoped === false){
 									C.stop().play();
 								}
 						});
-						S.all("#pupUplayer").delegate('mouseenter','#closebtn',function(){
-								DOM.style("#down-close","visibility","visible");
+						S.all("#pupUplayer").delegate('mouseenter','#container .close-btn .closebtnspan',function(){
+								DOM.style("#container .down-close","visibility","visible");
 						});
-						S.all("#pupUplayer").delegate('mouseleave','#down-close',function(){
-								DOM.style("#down-close","visibility","hidden");
+						S.all("#pupUplayer").delegate('mouseleave','#container .down-close',function(){
+								DOM.style("#container .down-close","visibility","hidden");
 						});
-						S.all("#pupUplayer").delegate('click','#down_close_btn',function(){
+						S.all("#pupUplayer").delegate('click','#container .down-close .down_close_btn',function(){
 								Storage.set("timeStamp",new Date().getTime());
 								DOM.style("#pupUplayer","display","none");
 								if(self.get('toptipBar').enable == true){
@@ -228,10 +228,10 @@ KISSY.add(function(S,CORE,UA,Anim,Storage) {
 								<div class="slides_container tab-content" id="slideinsert1">'
 								+slideImg+
 								'</div>\
-								<a href="javascript:void(0);" class="prev" id="J_pre" data-spm-click="gostr=/departure;locaid=prev">\
+								<a href="javascript:void(0);" class="prev" data-spm-click="gostr=/departure;locaid=prev">\
 									<span>&lt;</span>\
 								</a>\
-								<a href="javascript:void(0);" class="next" id="J_next" data-spm-click="gostr=/departure;locaid=next">\
+								<a href="javascript:void(0);" class="next" data-spm-click="gostr=/departure;locaid=next">\
 									<span>&gt;</span>\
 								</a>\
 								<ul class="tab-nav pagination">'
@@ -240,18 +240,18 @@ KISSY.add(function(S,CORE,UA,Anim,Storage) {
 							</div>\
 							<div class="close-btn" data-spm-click="gostr=/departure;locaid=close">\
 								<a href="javascript:void(0);">\
-									<span id="closebtn">×</span>\
+									<span class="closebtnspan">×</span>\
 								</a>\
 							</div>\
-							<div id="down-close">\
+							<div class="down-close">\
 								<img src="http://gtms04.alicdn.com/tps/i4/TB1cnFlFVXXXXbaXVXX6ef0HXXX-202-29.png" />\
-								<img src="http://gtms01.alicdn.com/tps/i1/TB1l18oFVXXXXaNXpXXnU4yFVXX-26-29.png"  id="down_close_btn"/>\
+								<img src="http://gtms01.alicdn.com/tps/i1/TB1l18oFVXXXXaNXpXXnU4yFVXX-26-29.png" class="down_close_btn"/>\
 							</div>\
 						</div>\
 						<div class="explaChoice">\
 							<img src="http://gtms01.alicdn.com/tps/i1/TB1nDdnFVXXXXXLXpXXBsd24XXX-860-158.jpg" width="860px" height="158px" alt="More choices.." />\
 							<a href="'+self.get('updateLink')+'" target="_blank">\
-								<img src="'+self.get('layer').btn_type_pic+'" id="layer_btn_type" data-spm-click="gostr=/departure;locaid=btn1"/>\
+								<img src="'+self.get('layer').btn_type_pic+'" class="layer_btn_type" data-spm-click="gostr=/departure;locaid=btn1"/>\
 								<span>'+self.get('layer').tip+'</span>\
 							</a>\
 						</div>\

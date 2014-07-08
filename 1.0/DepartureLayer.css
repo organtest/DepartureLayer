@@ -106,28 +106,29 @@ ol, ul{
 	z-index: 101;
 	cursor: pointer;
 }
-#pupUplayer #container #explaSlide .close-btn #closebtn{
+#pupUplayer #container #explaSlide .close-btn .closebtnspan{
 	font-size: 39px;
 	position: absolute;
 	left: -33px;
-	top: -13px;
+	top: 0px;
 	z-index: 1000;
+	overflow: hidden;
+	height: 29px;
+	line-height: 29px;
 	left: -36px \9;
-	*left: -36px;
 	_left: -36px;
 	top: -11px \9;
-	*top: -11px;
 	_top: -11px;
 }
-#pupUplayer #container #explaSlide #down-close{
+#pupUplayer #container #explaSlide .down-close{
 	position: absolute;
 	z-index: 102;
 	right: 0;
 	top: 17px;
 	visibility: hidden;
 }
-#pupUplayer #container #explaSlide #down-close #down_close_btn{
-	margin-left: -3px;
+#pupUplayer #container #explaSlide .down-close .down_close_btn{
+	margin-left: -4px;
 }
 
 #pupUplayer #explaSlide #slides {
@@ -217,7 +218,7 @@ ol, ul{
 	right: 170px;
 	top: 49px;
 }
-#pupUplayer #container .explaChoice #layer_btn_type{
+#pupUplayer #container .explaChoice .layer_btn_type{
 	position: absolute;
 	top: 50px;
 	left: 560px;
