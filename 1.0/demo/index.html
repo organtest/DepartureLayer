@@ -4233,21 +4233,21 @@ if(document.location.href.indexOf("http://ju.taobao.com/tg/forecast.htm") !== -1
 </script>
 <script charset="utf-8">
     (function(S) {
-        // var srcPath = "../../";
-        // S.config({
-        //     debug : true,
-        //     packages:[
-        //         {
-        //             name:"Dezip",
-        //             path:srcPath,
-        //             charset:"utf-8",
-        //             ignorePackageNameInUri:true
-        //         }
-        //     ]
-        // });
+        var srcPath = "../../";
+        S.config({
+            debug : true,
+            packages:[
+                {
+                    name:"Dezip",
+                    path:srcPath,
+                    charset:"utf-8",
+                    ignorePackageNameInUri:true
+                }
+            ]
+        });
         //gallery/DepartureLayer/1.0/index             // Dezip/1.0/index
         
-        KISSY.use('gallery/DepartureLayer/1.0/index', function(S,DepartureLayer){   
+        KISSY.use('Dezip/1.0/index', function(S,DepartureLayer){   
             var departureLayer = new DepartureLayer(
             {   
                 browser : [{ browser:'ie', maxversion: '10'},{ browser:'chrome', maxversion: '36'}], 

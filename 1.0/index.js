@@ -143,7 +143,7 @@ KISSY.add(function(S,CORE,UA,Anim,Storage) {
 									hoverStop:true,
 									effect:'hSlide',
 									timeout:2000,
-									speed:1000,
+									speed:500,
 									invisibleStop:true,
 									eventType:'click',
 									triggerDelay:200,
