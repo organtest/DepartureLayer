@@ -4238,17 +4238,19 @@ if(document.location.href.indexOf("http://ju.taobao.com/tg/forecast.htm") !== -1
         //     debug : true,
         //     packages:[
         //         {
-        //             name:"depatureie6",
+        //             name:"Dezip",
         //             path:srcPath,
         //             charset:"utf-8",
         //             ignorePackageNameInUri:true
         //         }
         //     ]
         // });
-        KISSY.use('gallery/DepartureLayer/1.0/index', function(S,DepartureLayer){
+
+        //gallery/DepartureLayer/1.0/index             // Dezip/1.0/index
+        KISSY.use('gallery/DepartureLayer/1.0/index', function(S,DepartureLayer){   
             var departureLayer = new DepartureLayer(
             {   
-                browser : [{ browser:'ie', version: '10'},{ browser:'chrome', version: '36'}], 
+                browser : [{ browser:'ie', maxversion: '10'},{ browser:'chrome', maxversion: '36'}], 
                 intervalTime : '10000',     
                 layer : 
                 {
@@ -4267,7 +4269,7 @@ if(document.location.href.indexOf("http://ju.taobao.com/tg/forecast.htm") !== -1
                 updateLink : 'http://windows.microsoft.com/zh-cn/internet-explorer/download-ie' 
             }
             );
-            departureLayer.show();      // test
+            departureLayer.show();     
         });
     })(KISSY);
     </script>

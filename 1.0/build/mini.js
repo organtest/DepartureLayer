@@ -1,9 +1,9 @@
 /*
 combined files : 
 
-gallery/DepartureLayer/1.0/store
-gallery/DepartureLayer/1.0/index
-gallery/DepartureLayer/1.0/mini
+1.0/store
+1.0/index
+1.0/mini
 
 */
 /**
@@ -11,7 +11,7 @@ gallery/DepartureLayer/1.0/mini
  * @creator 槿瑟<jinse.zjw@alibaba-inc.com>
  * @update 2014-07-02
  */
-KISSY.add('gallery/DepartureLayer/1.0/store',function(S) {
+KISSY.add('1.0/store',function(S) {
     var api               = {},
         win               = window,
         doc               = win.document,
@@ -76,7 +76,7 @@ KISSY.add('gallery/DepartureLayer/1.0/store',function(S) {
     return api;
 });
 /**
- * @fileOverview 浮层
+ * @fileOverview  @DepartureLayer
  * @extends  KISSY.Base
  * @creator 槿瑟<jinse.zjw@alibaba-inc.com>
  * @version 1.0
@@ -86,7 +86,7 @@ KISSY.add('gallery/DepartureLayer/1.0/store',function(S) {
  *    KISSY.use('gallery/DepartureLayer/1.0/index', function(S,DepartureLayer){
  *           var departureLayer = new DepartureLayer(
  *           {   
- *               browser : [{ browser:'ie', version: '10'},{ browser:'chrome', version: '36'}], 
+ *               browser : [{ browser:'ie', maxversion: '10'},{ browser:'chrome', maxversion: '36'}], 
  *               intervalTime : '10000',     
  *               layer : 
  *               {
@@ -109,7 +109,7 @@ KISSY.add('gallery/DepartureLayer/1.0/store',function(S) {
  *       });
  *   })(KISSY);
  */
-KISSY.add('gallery/DepartureLayer/1.0/index',function(S,CORE,UA,Anim,Storage) {
+KISSY.add('1.0/index',function(S,CORE,UA,Anim,Storage) {
     var $= S.all,DOM = S.DOM,WEEK_MS= 1000 * 60 * 60 * 24 * 7;
     /**
     * @class xx
@@ -139,7 +139,7 @@ KISSY.add('gallery/DepartureLayer/1.0/index',function(S,CORE,UA,Anim,Storage) {
     DepartureLayer.ATTRS = {
         //是否显示更新提示
 		browser: {
-			value: [{ browser:'ie', version: '10'}],
+			value: [{ browser:'ie', maxversion: '10'}],
 			setter: function(v){
 				return v;
 			}
@@ -214,12 +214,13 @@ KISSY.add('gallery/DepartureLayer/1.0/index',function(S,CORE,UA,Anim,Storage) {
 				    return anim.run();
 			    }else{
 					S.use('gallery/slide/1.3/index', function(S,Slide){
+					Storage.remove("tipBar");
 					C = new Slide('slides',{
 									autoSlide:false,
 									hoverStop:true,
 									effect:'hSlide',
 									timeout:2000,
-									speed:300,
+									speed:1000,
 									invisibleStop:true,
 									eventType:'click',
 									triggerDelay:200,
@@ -281,40 +282,40 @@ KISSY.add('gallery/DepartureLayer/1.0/index',function(S,CORE,UA,Anim,Storage) {
 			 	var slideImg = '';
 			 	var slideLast = '';
 			 	for(var i=0;i<imageCount;i++) { 
-					slideImg = slideImg + '<div class="tab-pannel">\
+					slideImg = slideImg + '<div class="tab-pannel" data-spm-click="gostr=/departure;locaid=dot'+i+'">\
 										<a href="#"><img src="'+self.get('layer').imgsrc[i]+'"></a>\
 									</div>';
 					slideLast = slideLast +	'<li><a href="javascript:void(0);"></a></li>';
 				}
 				
-			 	var supernatantTipBarHtml ='<div class="browser-updator" id="pupUplayer_tipel" style="display:none;">\
+			 	var supernatantTipBarHtml ='<div class="browser-updator" data-spm="20140707" id="pupUplayer_tipel" style="display:none;">\
 		        <div class="browser-updator-wrapper">\
 		          <p>\
 		            <span>'+self.get('toptipBar').toptip_text+'</span>\
-		            <a target="_blank" href="'+self.get('updateLink')+'" class="browser-updator-browser browser-updator-ie">\
+		            <a target="_blank" href="'+self.get('updateLink')+'" class="browser-updator-browser browser-updator-ie" data-spm-click="gostr=/departure;locaid=btn2">\
 		            <span>'+self.get('toptipBar').toptip_btn_text+'</span></a>\
 		          </p>\
 		        </div>\
 		        </div>',
 				supernatantHtml = supernatantTipBarHtml + 
-				'<div id="pupUplayer">\
+				'<div id="pupUplayer" data-spm="20140707">\
 					<div id="container">\
 						<div id="explaSlide">\
 							<div id="slides">\
 								<div class="slides_container tab-content" id="slideinsert1">'
 								+slideImg+
 								'</div>\
-								<a href="javascript:void(0);" class="prev" id="J_pre">\
+								<a href="javascript:void(0);" class="prev" id="J_pre" data-spm-click="gostr=/departure;locaid=prev">\
 									<span>&lt;</span>\
 								</a>\
-								<a href="javascript:void(0);" class="next" id="J_next">\
+								<a href="javascript:void(0);" class="next" id="J_next" data-spm-click="gostr=/departure;locaid=next">\
 									<span>&gt;</span>\
 								</a>\
 								<ul class="tab-nav pagination">'
 								+slideLast+
 								'</ul>\
 							</div>\
-							<div class="close-btn">\
+							<div class="close-btn" data-spm-click="gostr=/departure;locaid=close">\
 								<a href="javascript:void(0);">\
 									<span id="closebtn">×</span>\
 								</a>\
@@ -327,7 +328,7 @@ KISSY.add('gallery/DepartureLayer/1.0/index',function(S,CORE,UA,Anim,Storage) {
 						<div class="explaChoice">\
 							<img src="http://gtms01.alicdn.com/tps/i1/TB1nDdnFVXXXXXLXpXXBsd24XXX-860-158.jpg" width="860px" height="158px" alt="More choices.." />\
 							<a href="'+self.get('updateLink')+'" target="_blank">\
-								<img src="'+self.get('layer').btn_type_pic+'" id="layer_btn_type"/>\
+								<img src="'+self.get('layer').btn_type_pic+'" id="layer_btn_type" data-spm-click="gostr=/departure;locaid=btn1"/>\
 								<span>'+self.get('layer').tip+'</span>\
 							</a>\
 						</div>\
@@ -374,7 +375,7 @@ KISSY.add('gallery/DepartureLayer/1.0/index',function(S,CORE,UA,Anim,Storage) {
         },
         _uaTest : function(Storage){
             var self = this, count = self.get('browser').length, flag=false, i=0;
-            while(!self._find(Storage, self.get('browser')[i].browser, self.get('browser')[i].version)){
+            while(!self._find(Storage, self.get('browser')[i].browser, self.get('browser')[i].maxversion)){
             	i++;
             	if(i == count)	break;
             }
@@ -416,7 +417,7 @@ KISSY.add('gallery/DepartureLayer/1.0/index',function(S,CORE,UA,Anim,Storage) {
  * @author 槿瑟<jinse.zjw@alibaba-inc.com>
  * @module depatureie6
  **/
-KISSY.add('gallery/DepartureLayer/1.0/mini',function(S, Component) {
+KISSY.add('1.0/mini',function(S, Component) {
 
   return Component;
 
