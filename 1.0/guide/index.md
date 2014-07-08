@@ -48,18 +48,18 @@ DepartureLayer可配置的属性包括如下：
         {
 			tip : '其实...亲有更好的选择',
 			btn_type_pic : 'http://gtms04.alicdn.com/tps/i4/TB1kLVqFVXXXXX1XpXXJPIyFpXX-143-56.png',
-                    imgsrc : [ 'http://gtms01.alicdn.com/tps/i1/TB1UpxsFVXXXXbIXXXXIXul4XXX-860-342.png',
-                               'http://gtms02.alicdn.com/tps/i2/TB1d9prFVXXXXc1XXXXl0Cl4XXX-860-343.png' ,
-                               'http://gtms03.alicdn.com/tps/i3/TB1OORrFVXXXXcbXXXXIXul4XXX-860-342.png']
-                },
-                toptipBar : 
-                {
-                    enable : true,
-                    toptip_text : '亲，您的浏览器版本过低导致图片打开速度过慢，提升打开速度您可以：',
-                    toptip_btn_text : '升级浏览器'
-                },
-                updateLink : 'http://windows.microsoft.com/zh-cn/internet-explorer/download-ie' ‘
-                }
+			imgsrc : [ 'http://gtms01.alicdn.com/tps/i1/TB1UpxsFVXXXXbIXXXXIXul4XXX-860-342.png',
+                       'http://gtms02.alicdn.com/tps/i2/TB1d9prFVXXXXc1XXXXl0Cl4XXX-860-343.png',
+                       'http://gtms03.alicdn.com/tps/i3/TB1OORrFVXXXXcbXXXXIXul4XXX-860-342.png']
+            },
+		toptipBar : 
+		{
+			enable : true,
+			toptip_text : '亲，您的浏览器版本过低导致图片打开速度过慢，提升打开速度您可以：',
+			toptip_btn_text : '升级浏览器'
+		},
+		updateLink : 'http://windows.microsoft.com/zh-cn/internet-explorer/download-ie' ‘
+	}
 ```
                 
 ## 说明：
