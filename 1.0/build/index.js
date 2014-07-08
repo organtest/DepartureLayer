@@ -1,8 +1,8 @@
 /*
 combined files : 
 
-1.0/store
-1.0/index
+gallery/DepartureLayer/1.0/store
+gallery/DepartureLayer/1.0/index
 
 */
 /**
@@ -10,7 +10,7 @@ combined files :
  * @creator 槿瑟<jinse.zjw@alibaba-inc.com>
  * @update 2014-07-02
  */
-KISSY.add('1.0/store',function(S) {
+KISSY.add('gallery/DepartureLayer/1.0/store',function(S) {
     var api               = {},
         win               = window,
         doc               = win.document,
@@ -108,7 +108,7 @@ KISSY.add('1.0/store',function(S) {
  *       });
  *   })(KISSY);
  */
-KISSY.add('1.0/index',function(S,CORE,UA,Anim,Storage) {
+KISSY.add('gallery/DepartureLayer/1.0/index',function(S,CORE,UA,Anim,Storage) {
     var $= S.all,DOM = S.DOM,WEEK_MS= 1000 * 60 * 60 * 24 * 7;
     /**
     * @class xx
