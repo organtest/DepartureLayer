@@ -1,5 +1,5 @@
 /**
- * @fileOverview 浮层
+ * @fileOverview 浮层 DepartureLayer
  * @extends  KISSY.Base
  * @creator 槿瑟<jinse.zjw@alibaba-inc.com>
  * @version 1.0
