@@ -28,7 +28,7 @@ DepartureLayer是一个可配置的弹出浮层，在检测到一定的浏览器
 DepartureLayer可配置的属性包括如下：
 
 * browser ：配置浏览器类型及版本，DepartureLayer的浮层将在检测到对应的浏览器及版本的情况下弹出。设置为[{'ie','10'}]则浮层在浏览器为ie且版本号小于等于10时弹出；设置为[{'ie','10'},{'chrome','36'}]则将在浏览器<=ie10且<=chrome36时弹出。
-* intervalTime ： 配置DepartureLayer浮层两次弹出的间隔时间，以ms为单位，默认为WEEK_MS，即1000 * 60 * 60 * 24 * 7 = 604800000ms，浮层被关闭后将在1周后再次弹出。
+* intervalTime ： 配置DepartureLayer浮层两次弹出的间隔时间，以ms为单位，默认为WEEK_MS，即1000 x 60 x 60 x 24 x 7 = 604800000ms，浮层被关闭后将在1周后再次弹出。
 * layer ： 配置浮层样式，用户可配置浮层提示文案（tip）、图片按钮的样式（btn_type_pic）及轮播张数和样式（imgsrc，基于kissy gallery slide）。
 * updateLink ： 配置DepartureLayer上按钮被点击后的跳转地址。
 * toptipBar ： 配置浮层被关闭后的提示条是否显示（enable=true）以及提示条的提示文本（toptip_text）及按钮文本（toptip_btn_text）。
