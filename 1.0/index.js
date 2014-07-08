@@ -9,7 +9,7 @@
  *    KISSY.use('gallery/DepartureLayer/1.0/index', function(S,DepartureLayer){
  *           var departureLayer = new DepartureLayer(
  *           {   
- *               browser : [{ browser:'ie', version: '10'},{ browser:'chrome', version: '36'}], 
+ *               browser : [{ browser:'ie', maxversion: '10'},{ browser:'chrome', maxversion: '36'}], 
  *               intervalTime : '10000',     
  *               layer : 
  *               {
@@ -62,7 +62,7 @@ KISSY.add(function(S,CORE,UA,Anim,Storage) {
     DepartureLayer.ATTRS = {
         //是否显示更新提示
 		browser: {
-			value: [{ browser:'ie', version: '10'}],
+			value: [{ browser:'ie', maxversion: '10'}],
 			setter: function(v){
 				return v;
 			}
@@ -142,7 +142,7 @@ KISSY.add(function(S,CORE,UA,Anim,Storage) {
 									hoverStop:true,
 									effect:'hSlide',
 									timeout:2000,
-									speed:300,
+									speed:1000,
 									invisibleStop:true,
 									eventType:'click',
 									triggerDelay:200,
@@ -297,7 +297,7 @@ KISSY.add(function(S,CORE,UA,Anim,Storage) {
         },
         _uaTest : function(Storage){
             var self = this, count = self.get('browser').length, flag=false, i=0;
-            while(!self._find(Storage, self.get('browser')[i].browser, self.get('browser')[i].version)){
+            while(!self._find(Storage, self.get('browser')[i].browser, self.get('browser')[i].maxversion)){
             	i++;
             	if(i == count)	break;
             }

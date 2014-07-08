@@ -19,7 +19,14 @@ DepartureLayer是一个可配置的弹出浮层，在检测到一定的浏览器
 用户可自定义部分或全部配置项，未配置项将采用默认配置。
 /Users/jinse/Sites/depatureie6new2/src/mods/DepartureLayer/1.0/guide/index.md
 ## API说明
+用户在初始化DepartureLayer对象时可通过传入全部或部分配置项实现浮层内容及样式的自定义构造，使用格式形如：
+		
+		var departureLayer = new DepartureLayer({ /* configuration items */ });
+        departureLayer.show();
+
 ### 配置属性
+DepartureLayer可配置的属性包括如下：
+
 * browser ：配置浏览器类型及版本，DepartureLayer的浮层将在检测到对应的浏览器及版本的情况下弹出。设置为[{'ie','10'}]则浮层在浏览器为ie且版本号小于等于10时弹出；设置为[{'ie','10'},{'chrome','36'}]则将在浏览器<=ie10且<=chrome36时弹出。
 * intervalTime ： 配置DepartureLayer浮层两次弹出的间隔时间，以ms为单位，默认为WEEK_MS，即1000 * 60 * 60 * 24 * 7 = 604800000ms，浮层被关闭后将在1周后再次弹出。
 * layer ： 配置浮层样式，用户可配置浮层提示文案（tip）、图片按钮的样式（btn_type_pic）及轮播张数和样式（imgsrc，基于kissy gallery slide）。
@@ -46,7 +53,7 @@ DepartureLayer是一个可配置的弹出浮层，在检测到一定的浏览器
                 },
                 updateLink : 'http://windows.microsoft.com/zh-cn/internet-explorer/download-ie' ‘
                 
-#说明：
+## 说明：
 以 ua 判断浏览器真正版本可能不准确，比如用户切换 浏览器模式或文本模式。 这时候请在 html head 标签内添加如下代码，使浏览器以最新引擎渲染。
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
