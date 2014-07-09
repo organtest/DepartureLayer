@@ -18,15 +18,7 @@ ol, ul{
 	bottom: 0;
 	overflow: hidden;
 	z-index: 1000000000 !important;
-	position: absolute \9;
-	bottom: expression(eval(document.compatMode && document.compatMode=="CSS1Compat")
-	      ? documentElement.scrollTop +(documentElement.clientHeight-this.clientHeight)
-	      : document.body.scrollTop +(document.body.clientHeight-this.clientHeight)) \9;
 	top: 0 \9;
-	_position: absolute;
-	_bottom: expression(eval(document.compatMode && document.compatMode=="CSS1Compat")
-	      ? documentElement.scrollTop +(documentElement.clientHeight-this.clientHeight)
-	      : document.body.scrollTop +(document.body.clientHeight-this.clientHeight));
 	_top: 0;
 
 }
@@ -86,31 +78,34 @@ ol, ul{
 	height: 100%;
 }
 
-#pupUplayer #container {
+#pupUplayer .pUl_container {
 	width:870px;
 	padding:10px;
 	margin:0 auto;
 	position:relative;
 	z-index:0;
+	display: none;
 }
 
-#pupUplayer #container #explaSlide {
+#pupUplayer .explaSlide {
 	width:860px;
 	height:350px;
 	position:relative;
 }
-#pupUplayer #container #explaSlide .close-btn{
+#pupUplayer .close-btn{
 	position: absolute;
 	right: 0;
 	top: 17px;
 	z-index: 101;
 	cursor: pointer;
 }
-#pupUplayer #container #explaSlide .close-btn .closebtnspan{
+#pupUplayer .closebtnspan{
 	font-size: 39px;
 	position: absolute;
 	left: -33px;
 	top: 0px;
+	top: -4px \9;
+	_top: 0px;
 	z-index: 1000;
 	overflow: hidden;
 	height: 29px;
@@ -118,7 +113,7 @@ ol, ul{
 	left: -30px \9;
 	_left: -30px;
 }
-#pupUplayer #container #explaSlide .down-close{
+#pupUplayer .down-close{
 	position: absolute;
 	z-index: 102;
 	right: 0;
@@ -128,18 +123,18 @@ ol, ul{
 	visibility: hidden;
 	cursor: pointer;
 }
-#pupUplayer #container #explaSlide .down-close .down_close_btn{
+#pupUplayer .down_close_btn{
 	margin-left: -4px;
 }
 
-#pupUplayer #explaSlide #slides {
+#pupUplayer #slides {
 	position:absolute;
 	top:15px;
 	left:4px;
 	z-index:100;
 }
 
-#pupUplayer #explaSlide #slides .next,#pupUplayer #explaSlide #slides .prev {
+#pupUplayer .next, #pupUplayer .prev {
 	position:absolute;
 	top:138px;
 	left:23px;
@@ -148,7 +143,7 @@ ol, ul{
 	display:block;
 	z-index:101;
 }
-#pupUplayer #explaSlide #slides .next span, #pupUplayer #explaSlide #slides .prev span{
+#pupUplayer .next span, #pupUplayer .prev span{
 	font-size: 43px;
 	font-weight: lighter;
 	position: absolute;
@@ -156,7 +151,7 @@ ol, ul{
 	left: -4px;
 }
 
-#pupUplayer #explaSlide #slides .slides_container {
+#pupUplayer .slides_container {
 	width:860px;
 	height:343px;
 	overflow:hidden;
@@ -164,32 +159,32 @@ ol, ul{
 	/*display:none;*/
 }
 
-#pupUplayer #explaSlide #slides .slides_container a {
+#pupUplayer .slides_container a {
 	width:860px;
 	height:343px;
 	display:block;
 }
 
-#pupUplayer #explaSlide #slides .next {
+#pupUplayer .next {
 	left:814px;
 }
 
-#pupUplayer #explaSlide #slides .pagination {
+#pupUplayer .pagination {
 	width: 200px;
 	position: absolute;
 	left: 385px;
 	padding-left: 0;
 	top: 325px;
-	top: 321px \9;
+	top: 325px \9;
 	_top: 321px;
 }
 
-#pupUplayer #explaSlide #slides .pagination li {
+#pupUplayer .pagination li {
 	float:left;
 	margin:0 8px;
 }
 
-#pupUplayer #explaSlide #slides .pagination li a {
+#pupUplayer .pagination a {
 	float: left;
 	display:block;
 	height: 13px;
@@ -202,28 +197,28 @@ ol, ul{
 	cursor: pointer;
 }
 
-#pupUplayer #explaSlide #slides .pagination li.current a {
+#pupUplayer .pagination li.current a {
 	background-color: #595959;
 	width: 13px;
 	height: 13px;
 }
 
-#pupUplayer #container .explaChoice{
+#pupUplayer .explaChoice{
 	position: relative;
 	width: 860px;
 	margin-left: 4px;
 }
-#pupUplayer #container .explaChoice #infact_btn{
+#pupUplayer #infact_btn{
 	position: absolute;
 	right: 170px;
 	top: 49px;
 }
-#pupUplayer #container .explaChoice .layer_btn_type{
+#pupUplayer .layer_btn_type{
 	position: absolute;
 	top: 50px;
 	left: 560px;
 }
-#pupUplayer #container .explaChoice a span{
+#pupUplayer .explaChoice a span{
 	color: #fff;
 	position: absolute;
 	top: 53px;
@@ -244,6 +239,7 @@ ol, ul{
     -moz-opacity:0.3; 
     -khtml-opacity: 0.3; 
     opacity: 0.3;
+    _height:5000px;
 }
 
 #pupUplayer a:link, #pupUplayer a:visited {

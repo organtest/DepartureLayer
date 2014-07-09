@@ -138,7 +138,7 @@ KISSY.add('gallery/DepartureLayer/1.0/index',function(S,CORE,UA,Anim,Storage) {
     DepartureLayer.ATTRS = {
         //是否显示更新提示
 		browser: {
-			value: [{ browser:'ie', maxversion: '10'}],
+			value: [{ browser:'ie', maxversion: '7'}],
 			setter: function(v){
 				return v;
 			}
@@ -213,8 +213,15 @@ KISSY.add('gallery/DepartureLayer/1.0/index',function(S,CORE,UA,Anim,Storage) {
 				    return anim.run();
 			    }else{
 					S.use('gallery/slide/1.3/index', function(S,Slide){
-					Storage.remove("tipBar");
-					C = new Slide('slides',{
+						Storage.remove("tipBar");
+						S.ready(function(S){
+								DOM.style("#down","height",DOM.docHeight());
+								var viewPortHeight = DOM.viewportHeight();
+								var verticalHeight = DOM.viewportHeight()/2-266;
+								DOM.style("#pupUplayer .pUl_container","marginTop",verticalHeight+"px");		
+								DOM.style("#pupUplayer .pUl_container","display","block");
+
+								C = new Slide('slides',{
 									autoSlide:false,
 									hoverStop:true,
 									effect:'hSlide',
@@ -227,35 +234,29 @@ KISSY.add('gallery/DepartureLayer/1.0/index',function(S,CORE,UA,Anim,Storage) {
 									selectedClass:'current',
 									carousel:true,
 									touchmove:true
-								}).on('afterSwitch',function(){
 								});
-						S.ready(function(S){
-								DOM.style("#down","height",DOM.docHeight());
-								var viewPortHeight = DOM.viewportHeight();
-								var verticalHeight = DOM.viewportHeight()/2-266;
-								DOM.style("#container","marginTop",verticalHeight+"px");
 						});
-						S.all("#pupUplayer").delegate('click','#container #slides .prev',function(e){
+						S.all("#pupUplayer").delegate('click','.prev',function(e){
 								e.halt();
 								C.previous();
 								if(C.autoSlide && C.stoped === false){
 									C.stop().play();
 								}
 						});
-						S.all("#pupUplayer").delegate('click','#container #slides .next',function(e){
+						S.all("#pupUplayer").delegate('click','.next',function(e){
 								e.halt();
 								C.next();
 								if(C.autoSlide && C.stoped === false){
 									C.stop().play();
 								}
 						});
-						S.all("#pupUplayer").delegate('mouseenter','#container .close-btn .closebtnspan',function(){
-								DOM.style("#container .down-close","visibility","visible");
+						S.all("#pupUplayer").delegate('mouseenter','#pupUplayer .closebtnspan',function(){
+								DOM.style("#pupUplayer .down-close","visibility","visible");
 						});
-						S.all("#pupUplayer").delegate('mouseleave','#container .down-close',function(){
-								DOM.style("#container .down-close","visibility","hidden");
+						S.all("#pupUplayer").delegate('mouseleave','#pupUplayer .down-close',function(){
+								DOM.style("#pupUplayer .down-close","visibility","hidden");
 						});
-						S.all("#pupUplayer").delegate('click','#container .down-close .down_close_btn',function(){
+						S.all("#pupUplayer").delegate('click','#pupUplayer .down_close_btn',function(){
 								Storage.set("timeStamp",new Date().getTime());
 								DOM.style("#pupUplayer","display","none");
 								if(self.get('toptipBar').enable == true){
@@ -298,8 +299,8 @@ KISSY.add('gallery/DepartureLayer/1.0/index',function(S,CORE,UA,Anim,Storage) {
 		        </div>',
 				supernatantHtml = supernatantTipBarHtml + 
 				'<div id="pupUplayer" data-spm="20140707">\
-					<div id="container">\
-						<div id="explaSlide">\
+					<div class="pUl_container">\
+						<div class="explaSlide">\
 							<div id="slides">\
 								<div class="slides_container tab-content" id="slideinsert1">'
 								+slideImg+
