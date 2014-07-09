@@ -68,8 +68,8 @@ ol, ul{
 #pupUplayer_tipel .browser-updator-browser {
     display: inline-block;
     height: 33px;
-    line-height: 35px;
-    background: url(http://gtms01.alicdn.com/tps/i1/TB1BNdqFVXXXXbMXXXX6IYK_FXX-113-73.png) no-repeat;
+    line-height: 33px;
+    background: url(http://gtms01.alicdn.com/tps/i1/TB1BNdqFVXXXXbMXXXX6IYK_FXX-113-73.png) no-repeat transparent;
     padding-left: 15px;
     text-align: left;
 }
@@ -115,17 +115,18 @@ ol, ul{
 	overflow: hidden;
 	height: 29px;
 	line-height: 29px;
-	left: -36px \9;
-	_left: -36px;
-	top: -11px \9;
-	_top: -11px;
+	left: -30px \9;
+	_left: -30px;
 }
 #pupUplayer #container #explaSlide .down-close{
 	position: absolute;
 	z-index: 102;
 	right: 0;
+	_right: 3px;
 	top: 17px;
+	_top: 20px;
 	visibility: hidden;
+	cursor: pointer;
 }
 #pupUplayer #container #explaSlide .down-close .down_close_btn{
 	margin-left: -4px;
@@ -179,9 +180,8 @@ ol, ul{
 	left: 385px;
 	padding-left: 0;
 	top: 325px;
-	top: 320px \9;
-	*top: 320px;
-	_top: 320px;
+	top: 321px \9;
+	_top: 321px;
 }
 
 #pupUplayer #explaSlide #slides .pagination li {

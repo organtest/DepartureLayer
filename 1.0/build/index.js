@@ -219,7 +219,7 @@ KISSY.add('gallery/DepartureLayer/1.0/index',function(S,CORE,UA,Anim,Storage) {
 									hoverStop:true,
 									effect:'hSlide',
 									timeout:2000,
-									speed:500,
+									speed:400,
 									invisibleStop:true,
 									eventType:'click',
 									triggerDelay:200,
@@ -397,6 +397,9 @@ KISSY.add('gallery/DepartureLayer/1.0/index',function(S,CORE,UA,Anim,Storage) {
 			var attr = ['browser','toptipBar','intervalTime','layer','updateLink'];
 			if(!comconfig){
 				comconfig = defaultAttr;
+				for(var i=0; i<attr.length; i++){
+					comconfig[attr[i]] = defaultAttr[attr[i]].value;
+				}		
 				return comconfig;
 			}	
 			for(var i=0; i<attr.length; i++){

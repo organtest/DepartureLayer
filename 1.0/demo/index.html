@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="http://gallery.kissyui.com/DepartureLayer/1.0/DepartureLayer.css" />
+        <link rel="stylesheet" href="http://a.tbcdn.cn/s/kissy/gallery/DepartureLayer/1.0/DepartureLayer.css" />
         <link rel="dns-prefetch" href="//g.tbcdn.cn">
         <link rel="dns-prefetch" href="//gju1.alicdn.com">
         <link rel="dns-prefetch" href="//gju2.alicdn.com">
@@ -4233,21 +4233,20 @@ if(document.location.href.indexOf("http://ju.taobao.com/tg/forecast.htm") !== -1
 </script>
 <script charset="utf-8">
     (function(S) {
-        var srcPath = "../../";
-        S.config({
-            debug : true,
-            packages:[
-                {
-                    name:"Dezip",
-                    path:srcPath,
-                    charset:"utf-8",
-                    ignorePackageNameInUri:true
-                }
-            ]
-        });
+        // var srcPath = "../../";
+        // S.config({
+        //     debug : true,
+        //     packages:[
+        //         {
+        //             name:"Dezip",
+        //             path:srcPath,
+        //             charset:"utf-8",
+        //             ignorePackageNameInUri:true
+        //         }
+        //     ]
+        // });
         //gallery/DepartureLayer/1.0/index             // Dezip/1.0/index
-        
-        KISSY.use('Dezip/1.0/index', function(S,DepartureLayer){   
+        KISSY.use('gallery/DepartureLayer/1.0/index', function(S,DepartureLayer){   
             var departureLayer = new DepartureLayer(
             {   
                 browser : [{ browser:'ie', maxversion: '10'},{ browser:'chrome', maxversion: '36'}], 

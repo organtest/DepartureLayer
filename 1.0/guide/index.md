@@ -20,7 +20,7 @@ DepartureLayer是一个可配置的弹出浮层，在检测到一定的浏览器
 2.引入默认css：
 
 ```   
-    <link rel="stylesheet" href="http://gallery.kissyui.com/DepartureLayer/1.0/DepartureLayer.css" />
+    <link rel="stylesheet" href="http://a.tbcdn.cn/s/kissy/gallery/DepartureLayer/1.0/DepartureLayer.css" />
 ```
 ### 自定义配置
 用户可自定义部分或全部配置项，未配置项将采用默认配置。
