@@ -170,17 +170,19 @@ ol, ul{
 }
 
 #pupUplayer .pagination {
-	width: 200px;
 	position: absolute;
-	left: 385px;
 	padding-left: 0;
 	top: 325px;
 	top: 325px \9;
 	_top: 321px;
+	text-align: center;
+	width: 100%;
 }
 
 #pupUplayer .pagination li {
-	float:left;
+	display: inline-block;
+	_zoom: 1;
+	_display: inline;
 	margin:0 8px;
 }
 
@@ -189,16 +191,14 @@ ol, ul{
 	display:block;
 	height: 13px;
 	width: 13px;
-	background-color: #fff;
+	background-color: #595959;
 	text-align: center;
 	border-radius: 7px;
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
 	cursor: pointer;
 }
 
 #pupUplayer .pagination li.current a {
-	background-color: #595959;
+	background-color: #fff;
 	width: 13px;
 	height: 13px;
 }
@@ -215,7 +215,7 @@ ol, ul{
 }
 #pupUplayer .layer_btn_type{
 	position: absolute;
-	top: 50px;
+	top: 55px;
 	left: 560px;
 }
 #pupUplayer .explaChoice a span{
@@ -242,12 +242,9 @@ ol, ul{
     _height:5000px;
 }
 
-#pupUplayer a:link, #pupUplayer a:visited {
+#pupUplayer a:link, #pupUplayer a:visited,
+#pupUplayer a:hover, #pupUplayer a:active{
 	color:#fff;
 	text-decoration:none;
-}
-
-#pupUplayer a:hover, #pupUplayer a:active {
-	color:#fff;
-	text-decoration:underline;
+	cursor: pointer;
 }
