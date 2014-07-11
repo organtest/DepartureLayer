@@ -145,11 +145,10 @@ KISSY.add(function(S,CORE,UA,Anim,Storage) {
 							autoSlide:true,
 							hoverStop:true,
 							effect:'hSlide',
-							timeout:1300,
+							timeout:4000,
 							speed:400,
 							invisibleStop:true,
 							eventType:'click',
-							triggerDelay:1000,
 							defaultTab:0,
 							selectedClass:'current',
 							carousel:true
