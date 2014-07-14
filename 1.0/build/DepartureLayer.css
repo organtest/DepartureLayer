@@ -1,8 +1,9 @@
 #pupUplayer{
 	position: absolute;
 	z-index: 10000 !important;
-	width: 100%;
+	overflow: hidden;
 	height: 100%;
+    width:100%;
 	text-align: center;
 	top: 0;
 }
@@ -65,33 +66,25 @@
     background-position: 0 -40px;
 }
 
-
-#pupUplayer{
-	display: block;
-	position: absolute;
-	z-index: 1000;
-	width: 100%;
-	height: 100%;
-}
-
 #pupUplayer .pUl_container {
-	width:870px;
-	padding:10px;
+	width:860px;
 	margin:0 auto;
 	position:relative;
 	z-index:0;
 	display: none;
+    *zoom:1;
 }
 
 #pupUplayer .explaSlide {
 	width:860px;
-	height:350px;
+	height:342px;
 	position:relative;
+    *zoom:1;
 }
 #pupUplayer .close-btn{
 	position: absolute;
 	right: 0;
-	top: 14px;
+	top: 0;
 	z-index: 101;
 	cursor: pointer;
     display: block;
@@ -99,19 +92,20 @@
     height:29px;
 }
 #pupUplayer .closebtnspan{
-	font-size: 39px;
-	z-index: 1000;
-	overflow: hidden;
-	height: 29px;
-	line-height: 29px;
+    font-size: 39px;
+    z-index: 1000;
+    overflow: hidden;
+    height: 29px;
+    line-height: 27px;
+    display: block;
 }
 #pupUplayer .down-close{
 	position: absolute;
 	z-index: 102;
 	right: 0;
-	_right: 3px;
-	top: 17px;
-	_top: 20px;
+	top: 2px;
+    _top:0;
+
 	visibility: hidden;
 	cursor: pointer;
 }
@@ -121,8 +115,8 @@
 
 #pupUplayer #slides {
 	position:absolute;
-	top:15px;
-	left:4px;
+	top:0;
+    left: 0;
 	z-index:100;
 }
 
@@ -167,17 +161,17 @@
 	top: 324px;
 	text-align: center;
 	width: 100%;
+    left:50%;
+    margin-left: -40px;
 }
 
 #pupUplayer .pagination li {
-	display: inline-block;
-	_zoom: 1;
-	_display: inline;
-	margin:0 8px;
+	margin:0 4px;
+    float: left;
 }
 
 #pupUplayer .pagination a {
-	float: left;
+
 	display:block;
 	height: 14px;
 	width: 14px;
@@ -196,7 +190,6 @@
 #pupUplayer .explaChoice{
 	position: relative;
 	width: 860px;
-	margin-left: 4px;
 }
 #pupUplayer #infact_btn{
 	position: absolute;
