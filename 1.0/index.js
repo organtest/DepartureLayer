@@ -209,10 +209,10 @@ KISSY.add(function(S,CORE,UA,Anim,Storage) {
 			 	var slideImg = '';
 			 	var slideLast = '';
 			 	for(var i=0;i<imageCount;i++) { 
-					slideImg = slideImg + '<div class="tab-pannel" data-spm-click="gostr=/ued;locaid=dot'+i+'">\
+					slideImg = slideImg + '<div class="tab-pannel">\
 										<a href="#"><img src="'+self.get('layer').imgsrc[i]+'"></a>\
 									</div>';
-					slideLast = slideLast +	'<li><a href="javascript:void(0);"></a></li>';
+					slideLast = slideLast +	'<li data-spm-click="gostr=/ued;locaid=dot'+i+'"><a href="javascript:void(0);"></a></li>';
 				}
 				
 			 	var supernatantTipBarHtml ='<div class="browser-updator" data-spm="20140707" id="pupUplayer_tipel" style="display:none;">\
