@@ -20,17 +20,19 @@
 
 <script charset="utf-8">
     (function (S) {
-        S.config({
-             packages:[
-                 {
-                     name:"gallery/DepartureLayer",
-                     path:"../../",
-                     charset:"utf-8",
-                     ignorePackageNameInUri:true
-                 }
-             ]
-        });
-        KISSY.use('gallery/DepartureLayer/1.0/index,gallery/DepartureLayer/1.0/DepartureLayer.css', function (S, DepartureLayer) {
+        if(S.Config.debug){
+            S.config({
+                packages:[
+                    {
+                        name:"gallery/DepartureLayer",
+                        path:"../../",
+                        charset:"utf-8",
+                        ignorePackageNameInUri:true
+                    }
+                ]
+            });
+        }
+        S.use('gallery/DepartureLayer/1.0/index,gallery/DepartureLayer/1.0/DepartureLayer.css', function (S, DepartureLayer) {
             var departureLayer = new DepartureLayer({
                 browser: [
                     { browser: 'ie', maxversion: '10'},
