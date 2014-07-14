@@ -188,7 +188,9 @@ KISSY.add('gallery/DepartureLayer/1.0/index',function(S,CORE,UA,Anim,Storage) {
 		 show:function(){
 		 	var self = this;
 			//	Storage.clear();
-			S.ready(self._uaTest(Storage));
+			S.ready(function(S){
+                self._uaTest(Storage);
+            });
 		 },
         /**
          * 运行
@@ -212,7 +214,7 @@ KISSY.add('gallery/DepartureLayer/1.0/index',function(S,CORE,UA,Anim,Storage) {
 						Storage.remove("tipBar");
 						DOM.style("#down","height",DOM.docHeight());
 						var viewPortHeight = DOM.viewportHeight();
-						var verticalHeight = DOM.viewportHeight()/2-266;
+						var verticalHeight = viewPortHeight/2-266;
 						var pULContainer = S.all("#pupUplayer .pUl_container");
 						DOM.style(pULContainer,"marginTop",verticalHeight+"px");		
 						DOM.style(pULContainer,"display","block");
@@ -283,7 +285,7 @@ KISSY.add('gallery/DepartureLayer/1.0/index',function(S,CORE,UA,Anim,Storage) {
 			 	var slideImg = '';
 			 	var slideLast = '';
 			 	for(var i=0;i<imageCount;i++) { 
-					slideImg = slideImg + '<div class="tab-pannel" data-spm-click="gostr=/departure;locaid=dot'+i+'">\
+					slideImg = slideImg + '<div class="tab-pannel" data-spm-click="gostr=/ued;locaid=dot'+i+'">\
 										<a href="#"><img src="'+self.get('layer').imgsrc[i]+'"></a>\
 									</div>';
 					slideLast = slideLast +	'<li><a href="javascript:void(0);"></a></li>';
@@ -306,17 +308,17 @@ KISSY.add('gallery/DepartureLayer/1.0/index',function(S,CORE,UA,Anim,Storage) {
 								<div class="slides_container tab-content" id="slideinsert1">'
 								+slideImg+
 								'</div>\
-								<a href="javascript:void(0);" class="prev" data-spm-click="gostr=/departure;locaid=prev">\
+								<a href="javascript:void(0);" class="prev" data-spm-click="gostr=/ued;locaid=prev">\
 									<span>&lt;</span>\
 								</a>\
-								<a href="javascript:void(0);" class="next" data-spm-click="gostr=/departure;locaid=next">\
+								<a href="javascript:void(0);" class="next" data-spm-click="gostr=/ued;locaid=next">\
 									<span>&gt;</span>\
 								</a>\
 								<ul class="tab-nav pagination">'
 								+slideLast+
 								'</ul>\
 							</div>\
-							<div class="close-btn" data-spm-click="gostr=/departure;locaid=close">\
+							<div class="close-btn" data-spm-click="gostr=/ued;locaid=close">\
 								<a href="javascript:void(0);">\
 									<span class="closebtnspan">×</span>\
 								</a>\
@@ -329,7 +331,7 @@ KISSY.add('gallery/DepartureLayer/1.0/index',function(S,CORE,UA,Anim,Storage) {
 						<div class="explaChoice">\
 							<img src="http://gtms01.alicdn.com/tps/i1/TB1nDdnFVXXXXXLXpXXBsd24XXX-860-158.jpg" width="860px" height="158px" alt="More choices.." />\
 							<a href="'+self.get('updateLink')+'" target="_blank">\
-								<img src="'+self.get('layer').btn_type_pic+'" class="layer_btn_type" data-spm-click="gostr=/departure;locaid=btn1"/>\
+								<img src="'+self.get('layer').btn_type_pic+'" class="layer_btn_type" data-spm-click="gostr=/ued;locaid=btn1"/>\
 								<span>'+self.get('layer').tip+'</span>\
 							</a>\
 						</div>\

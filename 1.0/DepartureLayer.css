@@ -1,7 +1,3 @@
-
-ol, ul{
-	list-style: none;
-}
 #pupUplayer{
 	position: absolute;
 	z-index: 10000 !important;
@@ -17,7 +13,7 @@ ol, ul{
 	left: 0;
 	bottom: 0;
 	overflow: hidden;
-	z-index: 1000000000 !important;
+	z-index: 100000 !important;
 	top: 0 \9;
 	_top: 0;
 
@@ -95,23 +91,19 @@ ol, ul{
 #pupUplayer .close-btn{
 	position: absolute;
 	right: 0;
-	top: 17px;
+	top: 14px;
 	z-index: 101;
 	cursor: pointer;
+    display: block;
+    width:29px;
+    height:29px;
 }
 #pupUplayer .closebtnspan{
 	font-size: 39px;
-	position: absolute;
-	left: -33px;
-	top: 0px;
-	top: -4px \9;
-	_top: 0px;
 	z-index: 1000;
 	overflow: hidden;
 	height: 29px;
 	line-height: 29px;
-	left: -30px \9;
-	_left: -30px;
 }
 #pupUplayer .down-close{
 	position: absolute;
@@ -172,9 +164,7 @@ ol, ul{
 #pupUplayer .pagination {
 	position: absolute;
 	padding-left: 0;
-	top: 325px;
-	top: 325px \9;
-	_top: 321px;
+	top: 324px;
 	text-align: center;
 	width: 100%;
 }
@@ -189,8 +179,8 @@ ol, ul{
 #pupUplayer .pagination a {
 	float: left;
 	display:block;
-	height: 13px;
-	width: 13px;
+	height: 14px;
+	width: 14px;
 	background-color: #595959;
 	text-align: center;
 	border-radius: 7px;
@@ -225,7 +215,6 @@ ol, ul{
 	left: 115px;
 	font-size: 32px;
 	width: 500px;
-	font-family: 黑体,宋体;
 }
 #pupUplayer #down{
     position: absolute;
