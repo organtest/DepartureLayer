@@ -170,14 +170,14 @@ KISSY.add(function(S,CORE,UA,Anim,Storage) {
 		 		var pupUplayer = S.all("#pupUplayer");
 				var downClose = S.all("#pupUplayer .down-close");
 				pupUplayer.delegate('click','.prev',function(e){
-						e.halt();
+						e.preventDefault();
 						C.previous();
 						if(C.autoSlide && C.stoped === false){
 							C.stop().play();
 						}
 				});
 				pupUplayer.delegate('click','.next',function(e){
-						e.halt();
+						e.preventDefault();
 						C.next();
 						if(C.autoSlide && C.stoped === false){
 							C.stop().play();
@@ -219,7 +219,7 @@ KISSY.add(function(S,CORE,UA,Anim,Storage) {
 		        <div class="browser-updator-wrapper">\
 		          <p>\
 		            <span>'+self.get('toptipBar').toptip_text+'</span>\
-		            <a target="_blank" href="'+self.get('updateLink')+'" class="browser-updator-browser browser-updator-ie" data-spm-click="gostr=/departure;locaid=btn2">\
+		            <a target="_blank" href="'+self.get('updateLink')+'" class="browser-updator-browser browser-updator-ie" data-spm-click="gostr=/ued;locaid=btn2">\
 		            <span>'+self.get('toptipBar').toptip_btn_text+'</span></a>\
 		          </p>\
 		        </div>\
@@ -247,7 +247,7 @@ KISSY.add(function(S,CORE,UA,Anim,Storage) {
 									<span class="closebtnspan">×</span>\
 								</a>\
 							</div>\
-							<div class="down-close">\
+							<div class="down-close" data-spm-click="gostr=/ued;locaid=close">\
 								<img src="http://gtms04.alicdn.com/tps/i4/TB1cnFlFVXXXXbaXVXX6ef0HXXX-202-29.png" />\
 								<img src="http://gtms01.alicdn.com/tps/i1/TB1l18oFVXXXXaNXpXXnU4yFVXX-26-29.png" class="down_close_btn"/>\
 							</div>\
