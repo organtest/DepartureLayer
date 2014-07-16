@@ -24,9 +24,7 @@ KISSY.add(function (S, Base, Node) {
     }
   };
 
-  function Dialog () {
-    
-  }
+  function Dialog () {}
   var props = {
     render: function (config) {
       var self = this;
@@ -37,6 +35,7 @@ KISSY.add(function (S, Base, Node) {
         config = S.mix({
           updateUrl: 'http://windows.microsoft.com/zh-cn/windows/downloads?spm=608.2291429.20140707.12.KdZxog',
           updateGuid: '其实...亲有更好的选择',
+          closeWarn: "不，我还要用这悲催的方式浏览",
           updateBtn: 'http://gtms03.alicdn.com/tps/i3/TB1RcVQFVXXXXbvXFXXcgZpFXXX-140-48.png',
           slider : [ 
             {
@@ -81,25 +80,24 @@ KISSY.add(function (S, Base, Node) {
         ].join('');
         content = slider + footer;
       }
-      var $mask = Node('<div class="kb-mask"></div>').appendTo('body').on('click', function () {
-        self.hide();
-      });
+      var $mask = Node('<div class="kb-mask"></div>').appendTo('body');
       var $dialog = self.$dialog = Node([
-        '<div class="kb-dialog"><div class="kb-dialog-wrapper J_KBDialog">',
+        '<div class="kb-dialog"><!--[if IE 6]><span class="kb-dialog-refer"></span><![endif]--><div class="kb-dialog-wrapper J_KBDialog">',
           '<a href="javascript:void(0);"  class="kb-dialog-close-wrapper J_KBClose">',
-            '<span class="kb-warn-img"></span>',
-            '<span class="kb-close">×</span>',
+            '<span class="kb-warn">',config.closeWarn,'</span>',
+            '<span class="kb-close">✕</span>',
           '</a>',
           '<div class="kb-dialog-content">',
             content,
           '</div>',
         '</div></div>'
       ].join('')).appendTo('body').on('show', function () {
+        Node.one('body').addClass('body-fix');
         $mask.show().animate({
           opacity: '.75'
         },'.4', 'easeBothStrong');
         $dialog.show().one('.J_KBDialog').animate({
-          top: 180,
+          // top: 130,
           opacity: 1
         }, '.4', 'easeBothStrong', function () {
           self.fire('show');
@@ -115,11 +113,12 @@ KISSY.add(function (S, Base, Node) {
           opacity: 0
         }, '.4', 'easeBothStrong');
         $dialog.one('.J_KBDialog').animate({
-          top: 10,
+          // top: 10,
           opacity:0
         }, '.4', 'backBothStrong', function () {
           $dialog.hide();
           $mask.hide();
+          Node.one('body').addClass('body-fix');
           self.fire('hide');
         });
       }).delegate('mouseenter.stop', '.J_KBSlider', function () {

@@ -10,7 +10,7 @@
   _height: 40px;
   _padding-top: 5px;
 }
-.kb-toptip-title{
+.kb-toptip-title {
   color: #fff;
   line-height: 45px;
   text-indent: 16px;
@@ -33,6 +33,6 @@
   color: #fff;
   text-decoration: none;
 }
-.kb-toptip-btn:hover{
+.kb-toptip-btn:hover {
   background-position: 0 -40px;
 }
