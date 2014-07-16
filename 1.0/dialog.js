@@ -55,8 +55,12 @@ KISSY.add(function (S, Base, Node) {
         }, config, true, null, true);
         var _slides = [];
         var _handles = [];
+        if (config.slider.length < 2) {
+          S.log('Error: Dialog slider config error, the slider must be [Array]{2-5}');
+          return false;
+        }
 
-        S.each(config.slider, function (slide, i) {
+        S.each(config.slider.slice(0,5), function (slide, i) {
           _slides.push('<a class="kb-slider-item J_KBSlider-item J_KBSlider-item'+i+'" href="'+slide.href+'"><img src="' + slide.img + '" alt="'+(slide.alt||'')+'" /></a>');
           _handles.push('<a href="javascript:void(0);" data-index="' + i + '" class="kb-slider-step J_KBSlider-step"></a>');
         });
