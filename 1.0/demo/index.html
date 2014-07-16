@@ -34,30 +34,15 @@
 
     S.use('gallery/DepartureLayer/1.0/index', function (S, DepartureLayer) {
       var killer = new DepartureLayer({
+        expires: 0
+      });
+      killer.kill();
+
+      var killer2 = new DepartureLayer({
         ua: [
           {
             browser: 'chrome',
             version: '>=10',
-            show: 'all'
-          },
-          {
-            browser: 'ie',
-            version: '=7',
-            show: 'toptip'
-          },
-          {
-            browser: 'ie',
-            version: '<7',
-            show: 'all'
-          },
-          {
-            browser: 'ie',
-            version: '>1',
-            show: 'all'
-          },
-          {
-            browser: 'firefox',
-            version: '>=1',
             show: 'all'
           }
         ],
@@ -66,8 +51,10 @@
         // dialog: 'adfadsfasdf',
         // toptip: 'abc'
       });
-
-      killer.kill();
+      console.log(killer2)
+      killer2.kill(function (Store, dialog, toptip) {
+        console.log(Store, dialog, toptip)
+      });
     });
   })(KISSY);
 </script>

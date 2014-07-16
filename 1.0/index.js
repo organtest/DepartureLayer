@@ -281,7 +281,18 @@ KISSY.add(function (S, UA, Store) {
    * @member toptip {Object || String} The toptip config or the content html
    */
   UACheck.CONFIG = {
-    ua: [],
+    ua: [
+      {
+        browser: 'ie',
+        version: '<7',
+        show: 'all'
+      },
+      {
+        browser: 'ie',
+        version: '<8',
+        show: 'toptip'
+      }
+    ],
     theme: '',
     expires: ONE_WEEK_TIME,
     dialog: {},
