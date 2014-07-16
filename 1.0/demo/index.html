@@ -51,9 +51,9 @@
         // dialog: 'adfadsfasdf',
         // toptip: 'abc'
       });
-      console.log(killer2)
+      window.console && window.console.log(killer2)
       killer2.kill(function (Store, dialog, toptip) {
-        console.log(Store, dialog, toptip)
+        window.console && window.console.log(Store, dialog, toptip)
       });
     });
   })(KISSY);
