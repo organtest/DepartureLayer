@@ -84,14 +84,33 @@ KISSY.add(function (S, Base, Node) {
       var $dialog = self.$dialog = Node([
         '<div class="kb-dialog"><!--[if IE 6]><span class="kb-dialog-refer"></span><![endif]--><div class="kb-dialog-wrapper J_KBDialog">',
           '<a href="javascript:void(0);"  class="kb-dialog-close-wrapper J_KBClose">',
-            '<span class="kb-warn">',config.closeWarn,'</span>',
             '<span class="kb-close">✕</span>',
+            config.closeWarn ? '<span class="kb-warn">'+config.closeWarn+'</span>':'',
           '</a>',
           '<div class="kb-dialog-content">',
             content,
           '</div>',
         '</div></div>'
-      ].join('')).appendTo('body').on('show', function () {
+      ].join('')).appendTo('body').delegate('click.close', '.J_KBClose', function () {
+        self.hide();
+      });
+      if (!S.isString(config)) {
+        var _later;
+        $dialog.on('slider.start', function () {
+          $dialog.one('.J_KBSlider-step').item(0).fire('click');
+          _later = _later || new Layter(function () {
+            $dialog.one('.J_KBSlider-next').fire('click');
+          });
+        }).on('slider.stop', function () {
+          _later && _later.stop();
+        });
+      }
+      self._bindEvt($dialog, $mask);
+      return this;
+    },
+    _bindEvt: function ($dialog,$mask) {
+      var self = this;
+      $dialog.on('show', function () {
         Node.one('body').addClass('body-fix');
         $mask.show().animate({
           opacity: '.75'
@@ -102,13 +121,9 @@ KISSY.add(function (S, Base, Node) {
         }, '.4', 'easeBothStrong', function () {
           self.fire('show');
         });
-        $dialog.one('.J_KBSlider-step').item(0).fire('click');
-        $dialog.data('_later', new Layter(function () {
-          $dialog.one('.J_KBSlider-next').fire('click');
-        }));
+        $dialog.fire('slider.start');
       }).on('hide', function () {
-        var later = $dialog.data('_later');
-        later && later.stop();
+        $dialog.fire('slider.stop');
         $mask.animate({
           opacity: 0
         }, '.4', 'easeBothStrong');
@@ -122,13 +137,9 @@ KISSY.add(function (S, Base, Node) {
           self.fire('hide');
         });
       }).delegate('mouseenter.stop', '.J_KBSlider', function () {
-        var later = $dialog.data('_later');
-        later && later.stop();
+        $dialog.fire('slider.stop');
       }).delegate('mouseleave.start', '.J_KBSlider', function () {
-        var later = $dialog.data('_later');
-        later && later.start();
-      }).delegate('click.close', '.J_KBClose', function () {
-        self.hide();
+        $dialog.fire('slider.start');
       }).delegate('click.prev', '.J_KBSlider-prev', function (e) {
         var $current = $dialog.one('.J_KBSlider-cur');
         var curIndex = $current.attr('data-index');
@@ -157,7 +168,6 @@ KISSY.add(function (S, Base, Node) {
           $this.css('left', '100%');
         });
       });
-      return this;
     },
     show: function () {
       this.$dialog.fire('show');

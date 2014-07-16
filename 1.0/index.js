@@ -1,6 +1,6 @@
 KISSY.add(function (S, UA, Store) {
   var packagePath = 'gallery/DepartureLayer/1.0/';
-  var reToken = /^([<>=~]{0,2})(\d+)$|^(\d+)\-(\d+)$/i;
+  var reToken = /^\s*([<>=~]{0,2})\s*(\d+)\s*$|^\s*(\d+)\s*\-\s*(\d+)\s*$/i;
   var noop = S.noop;
   var ONE_WEEK_TIME = 1000 * 60 * 60 * 24 * 7;
   var BROWSER_KILLER_TIME_STAMP = 'bk_timestamp';
@@ -30,9 +30,9 @@ KISSY.add(function (S, UA, Store) {
         };
       }
       if (rangeCheckToken === '=') {
-        rangeCheckToken === '==';
+        rangeCheckToken = '==';
       }
-      return new Function('version', 'return version && (version '+ rangeCheckToken + ' ' + maxVersion +');');
+      return new Function('version', 'return null != version && version > 0.1 && (version '+ rangeCheckToken + ' ' + maxVersion +');');
     } else if ((maxVersion = matched[4]) && minVersion) {
       return function (version) {
         return version >= minVersion && version <= maxVersion;
@@ -72,7 +72,11 @@ KISSY.add(function (S, UA, Store) {
           S.log('Warning: `config.ua[' + i + '].version` is undefined!');
           return;
         }
-        self.matched = _version2func(version)(target);
+        self.browser = browser;
+        self.version = target;
+        self.rule = version;
+        self.match = _version2func(version);
+        self.matched = self.match(target);
       });
       return self;
     },
@@ -89,10 +93,11 @@ KISSY.add(function (S, UA, Store) {
       var options = self.options;
       KISSY.use([
         packagePath + 'toptip.js',
-        options.theme ? options.theme : packagePath + 'toptip.less.css'
+        options.theme ? 
+          options.theme : 
+          packagePath + 'toptip.less.css'
       ], function (S, Toptip) {
-        var toptip = new Toptip;
-        callback.call(self, toptip.render(options.toptip).show());
+        callback.call(self, Store, new Toptip().render(options.toptip).show());
       });
     },
     _showDialog: function (callback) {
@@ -100,19 +105,17 @@ KISSY.add(function (S, UA, Store) {
       var options = self.options;
       KISSY.use([
         packagePath + 'dialog.js',
-        options.theme ? options.theme : packagePath + 'dialog.less.css'
+        options.theme ? 
+          options.theme : 
+          packagePath + 'dialog.less.css'
       ], function (S, Dialog) {
-        var dialog = new Dialog;
-        callback.call(self, dialog.render(options.dialog).show());
+        callback.call(self, Store, new Dialog().render(options.dialog).show());
       });
     },
     _showAll: function (callback) {
       var self = this;
       var options = self.options;
-      var modules = [
-        packagePath + 'dialog.js',
-        packagePath + 'toptip.js'
-      ];
+      var modules = [packagePath + 'dialog.js',packagePath + 'toptip.js'];
       if (options.theme) {
         modules.push(options.theme);
       } else {
@@ -120,15 +123,11 @@ KISSY.add(function (S, UA, Store) {
         modules.push(packagePath + 'toptip.less.css');
       }
       KISSY.use(modules, function (S, Dialog, Toptip) {
-        var dialog = new Dialog;
-        var toptip = new Toptip;
-        dialog.render(options.dialog).show();
-        toptip.render(options.toptip);
-        dialog.on('hide', function () {
-          toptip.show();
+        var toptip = new Toptip().render(options.toptip);
+        callback.call(self, Store, new Dialog().render(options.dialog).show().on('hide', function () {
+          toptip && toptip.show();
           // Store.set(BROWSER_KILLER_TIME_STAMP, +new Date);
-        });
-        callback.call(self, dialog, toptip);
+        }), toptip);
       });
     },
     kill: function (callback) {

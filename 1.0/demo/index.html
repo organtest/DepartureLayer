@@ -40,16 +40,16 @@
             version: '>=10',
             show: 'all'
           },
-          // {
-          //   browser: 'ie',
-          //   version: '=7',
-          //   show: 'toptip'
-          // },
-          // {
-          //   browser: 'ie',
-          //   version: '<7',
-          //   show: 'all'
-          // },
+          {
+            browser: 'ie',
+            version: '=7',
+            show: 'toptip'
+          },
+          {
+            browser: 'ie',
+            version: '<7',
+            show: 'all'
+          },
           {
             browser: 'ie',
             version: '>1',
@@ -60,7 +60,9 @@
             version: '>=1',
             show: 'all'
           }
-        ]
+        ],
+        dialog: 'adfadsfasdf',
+        toptip: 'abc'
       });
 
       killer.kill();

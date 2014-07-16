@@ -75,6 +75,9 @@
 
   background: #eee;
   width: 860px;
+  min-height: 100px;
+  _height: 100px;
+  zoom: 1;
   margin-left: auto;
   margin-right: auto;
   z-index: 0;
@@ -91,11 +94,16 @@
   height: 30px;
   .kb-warn {
     display: none;
-    float: left;
+    float: right;
+    background-color: #666;
+    color: white;
+    height: 29px;
+    padding: 0 10px;
+    line-height: 29px;
     margin-right: 1px;
   }
   .kb-close {
-    float: left;
+    float: right;
     font-size: 29px;
     line-height: 29px;
     width: 29px;
@@ -110,12 +118,7 @@
     background-color: #666;
   }
   .kb-warn{
-    background-color: #666;
-    color: white;
-    width: 202px;
-    height: 29px;
-    line-height: 29px;
-    display: block;
+    display: inline;
   }
 }
 

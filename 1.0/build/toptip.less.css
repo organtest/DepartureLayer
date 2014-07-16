@@ -9,9 +9,9 @@
   font-size: 13px;
   _height: 40px;
   _padding-top: 5px;
+  color: #fff;
 }
 .kb-toptip-title {
-  color: #fff;
   line-height: 45px;
   text-indent: 16px;
 }
