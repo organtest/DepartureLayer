@@ -145,7 +145,33 @@ KISSY.add(function (S, UA, Store) {
     constructor: UACheck,
     config: function (config) {
       var self = this;
-      var options = self.options = S.mix(S.mix({}, self.options || UACheck.CONFIG, true, null, true), config, true, null, true);
+      /**
+       * The default config
+       * @type {Object}
+       * @member ua {Array} The ua set
+       * @member theme {String} The theme wanted reset
+       * @member expires {long} The time for expires
+       * @member dialog {Object || String} The dialog config or the content html
+       * @member toptip {Object || String} The toptip config or the content html
+       */
+      var options = self.options = S.mix(self.options || {
+        // {
+        //   browser: 'ie',
+        //   version: '<7',
+        //   show: 'all'
+        // },
+        // {
+        //   browser: 'ie',
+        //   version: '<8',
+        //   show: 'toptip'
+        // }
+      
+        ua: [],
+        theme: '',
+        expires: ONE_WEEK_TIME,
+        dialog: {},
+        toptip: {}
+      }, config, true, null, true);
       var uacheck = options.ua;
       var ALL = 'all';
       var DIALOG = 'dialog';
@@ -270,33 +296,6 @@ KISSY.add(function (S, UA, Store) {
       }
       return self;
     }
-  };
-  /**
-   * The default config
-   * @type {Object}
-   * @member ua {Array} The ua set
-   * @member theme {String} The theme wanted reset
-   * @member expires {long} The time for expires
-   * @member dialog {Object || String} The dialog config or the content html
-   * @member toptip {Object || String} The toptip config or the content html
-   */
-  UACheck.CONFIG = {
-    ua: [
-      {
-        browser: 'ie',
-        version: '<7',
-        show: 'all'
-      },
-      {
-        browser: 'ie',
-        version: '<8',
-        show: 'toptip'
-      }
-    ],
-    theme: '',
-    expires: ONE_WEEK_TIME,
-    dialog: {},
-    toptip: {}
   };
   // for version check 
   UACheck.VERSION = '1.0';

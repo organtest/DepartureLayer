@@ -44,6 +44,11 @@
   outline: 0;
   cursor: pointer;
 }
+.kb-dialog img {
+  zoom: 1;
+  border: 0;
+  outline: 0;
+}
 .kb-dialog:after {
   content: "";
 }
@@ -64,6 +69,7 @@
 .kb-slider-screen {
   _position: relative;
   _height: 100%;
+  text-align: left;
 }
 .kb-dialog-wrapper {
   position: relative;
@@ -124,7 +130,6 @@
   height: 343px;
   position: relative;
   box-shadow: 0 0 5px 0 #333;
-  text-align: left;
 }
 .kb-slider .kb-slider-item {
   position: absolute;
@@ -174,6 +179,7 @@
 .kb-dialog-btn {
   width: 100%;
   position: relative;
+  text-align: center;
   display: block;
   height: 120px;
   margin-top: -1px;
@@ -188,4 +194,5 @@
 }
 .kb-dialog-btn img {
   vertical-align: middle;
+  zoom: 1;
 }

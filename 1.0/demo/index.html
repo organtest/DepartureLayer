@@ -34,11 +34,34 @@
 
     S.use('gallery/DepartureLayer/1.0/index', function (S, DepartureLayer) {
       var killer = new DepartureLayer({
+        ua: [
+          {
+            browser: 'ie',
+            version: '<7',
+            show: 'all'
+          },
+          {
+            browser: 'ie',
+            version: '<8',
+            show: 'toptip'
+          }
+        ],
         expires: 0
       });
       killer.kill();
+      var killerIE8 = new DepartureLayer({
+        ua:[{
+          browser: 'ie',
+          version: '~8',
+          show: 'dialog'
+        }],
+        expires: 0,
+        dialog: '<p>What ?<br />WTF, U R using IE?!<br/> This is a bad browser 8 ≤ IE &lt;10</p>',
+        toptip: 'WTF, U R using IE?!'
+      });
+      killerIE8.kill();
 
-      var killer2 = new DepartureLayer({
+      var kissChrome = new DepartureLayer({
         ua: [
           {
             browser: 'chrome',
@@ -46,15 +69,14 @@
             show: 'all'
           }
         ],
-        expires: 0
-        // ,
-        // dialog: 'adfadsfasdf',
-        // toptip: 'abc'
+        expires: 0,
+        dialog: 'Why are U so diao~~',
+        toptip: 'Chrome的版本 ≥10 才会看到这个噢~'
       });
-      window.console && window.console.log(killer2)
-      killer2.kill(function (Store, dialog, toptip) {
+      kissChrome.kill(function (Store, dialog, toptip) {
         window.console && window.console.log(Store, dialog, toptip)
       });
+      // alert(killer.browser+' '+killer.version + killer.options.toptip)
     });
   })(KISSY);
 </script>
