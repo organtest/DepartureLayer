@@ -4,13 +4,12 @@ KISSY.add(function (S, Base, Node) {
   function Layter (handle, during) {
     this._handle = handle;
     this._during = during || 4000;
-    this.start();
     return this;
   }
   Layter.prototype = {
     constructor: Layter,
     start: function () {
-      if (this._id) {this.stop();}
+      this.stop();
       this._id = setInterval(this._handle, this._during);
       return this;
     },
@@ -99,18 +98,57 @@ KISSY.add(function (S, Base, Node) {
         self.hide();
       });
       if (!S.isString(config)) {
-        var _later;
-        $dialog.on('slider.start', function () {
-          $dialog.one('.J_KBSlider-step').item(0).fire('click');
-          _later = _later || new Layter(function () {
-            $dialog.one('.J_KBSlider-next').fire('click');
-          });
-        }).on('slider.stop', function () {
-          _later && _later.stop();
-        });
+        self._bindSliderEvt($dialog, $mask);
       }
       self._bindEvt($dialog, $mask);
       return this;
+    },
+    _bindSliderEvt: function ($dialog, $mask) {
+      var _later;
+      var self = this;
+      $dialog.on('slider.start', function () {
+        if (!_later) {
+          $dialog.one('.J_KBSlider-step').item(0).fire('click');
+        }
+        _later = _later || new Layter(function () {
+          $dialog.one('.J_KBSlider-next').fire('click');
+        });
+        _later.start();
+      }).on('slider.stop', function () {
+        _later && _later.stop();
+      }).delegate('mouseenter.stop', '.J_KBSlider', function () {
+        $dialog.fire('slider.stop');
+      }).delegate('mouseleave.start', '.J_KBSlider', function () {
+        $dialog.fire('slider.start');
+      }).delegate('slider.show', '.J_KBSlider-item', function (e) {
+        Node.one(e.target).animate({
+          left: 0
+        }, '.4', 'easeBothStrong');
+      }).delegate('slider.hide', '.J_KBSlider-item', function (e) {
+        var $this = Node.one(e.target).animate({
+          left: '-100%'
+        }, '.4', 'easeBothStrong', function () {
+          $this.css('left', '100%');
+        });
+      }).delegate('click.prev', '.J_KBSlider-prev', function (e) {
+        var $current = $dialog.one('.J_KBSlider-cur');
+        var curIndex = $current.attr('data-index');
+        ($current.prev() || $current.parent().last('.J_KBSlider-step')).fire('click');
+      }).delegate('click.next', '.J_KBSlider-next', function (e) {
+        var $current = $dialog.one('.J_KBSlider-cur');
+        var curIndex = $current.attr('data-index');
+        ($current.next() || $current.siblings().item(0)).fire('click');
+      }).delegate('click.step', '.J_KBSlider-step', function (e) {
+        var $this = Node.one(e.target);
+        if ($this.hasClass('.J_KBSlider-cur')) {return false}
+        var $active = $dialog.one('.J_KBSlider-cur') || $this.parent().last('.J_KBSlider-step');
+        $this.siblings().removeClass(CURRENT_HANDLE_CLASS);
+        $this.addClass(CURRENT_HANDLE_CLASS);
+        var $current = $dialog.one('.J_KBSlider-item' + $this.attr('data-index'));
+        var $prev = $dialog.one('.J_KBSlider-item' + $active.attr('data-index'));
+        $prev.fire('slider.hide');
+        $current.fire('slider.show');
+      });
     },
     _bindEvt: function ($dialog,$mask) {
       var self = this;
@@ -120,7 +158,6 @@ KISSY.add(function (S, Base, Node) {
           opacity: '.75'
         },'.4', 'easeBothStrong');
         $dialog.show().one('.J_KBDialog').animate({
-          // top: 130,
           opacity: 1
         }, '.4', 'easeBothStrong', function () {
           self.fire('show');
@@ -132,44 +169,12 @@ KISSY.add(function (S, Base, Node) {
           opacity: 0
         }, '.4', 'easeBothStrong');
         $dialog.one('.J_KBDialog').animate({
-          // top: 10,
           opacity:0
         }, '.4', 'backBothStrong', function () {
           $dialog.hide();
           $mask.hide();
           Node.one('body').addClass('body-fix');
           self.fire('hide');
-        });
-      }).delegate('mouseenter.stop', '.J_KBSlider', function () {
-        $dialog.fire('slider.stop');
-      }).delegate('mouseleave.start', '.J_KBSlider', function () {
-        $dialog.fire('slider.start');
-      }).delegate('click.prev', '.J_KBSlider-prev', function (e) {
-        var $current = $dialog.one('.J_KBSlider-cur');
-        var curIndex = $current.attr('data-index');
-        ($current.prev() || $current.parent().last('.J_KBSlider-step')).fire('click');
-      }).delegate('click.next', '.J_KBSlider-next', function (e) {
-        var $current = $dialog.one('.J_KBSlider-cur');
-        var curIndex = $current.attr('data-index');
-        ($current.next() || $current.siblings().item(0)).fire('click');
-      }).delegate('click.step', '.J_KBSlider-step', function (e) {
-        var $this = Node.one(e.target);
-        var $active = $dialog.one('.J_KBSlider-cur') || $this.parent().last('.J_KBSlider-step');
-        $this.siblings().removeClass(CURRENT_HANDLE_CLASS);
-        $this.addClass(CURRENT_HANDLE_CLASS);
-        var $current = $dialog.one('.J_KBSlider-item' + $this.attr('data-index'));
-        var $prev = $dialog.one('.J_KBSlider-item' + $active.attr('data-index'));
-        $prev.fire('slider.hide');
-        $current.fire('slider.show');
-      }).delegate('slider.show', '.J_KBSlider-item', function (e) {
-        Node.one(e.target).animate({
-          left: 0
-        }, '.4', 'easeBothStrong');
-      }).delegate('slider.hide', '.J_KBSlider-item', function (e) {
-        var $this = Node.one(e.target).animate({
-          left: '-100%'
-        }, '.4', 'easeBothStrong', function () {
-          $this.css('left', '100%');
         });
       });
     },
