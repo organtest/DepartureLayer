@@ -60,7 +60,7 @@ KISSY.add(function (S, Base, Node) {
         }
 
         S.each(config.slider.slice(0,5), function (slide, i) {
-          _slides.push('<a class="kb-slider-item J_KBSlider-item J_KBSlider-item'+i+'" href="'+slide.href+'"><img src="' + slide.img + '" alt="'+(slide.alt||'')+'" /></a>');
+          _slides.push('<a class="kb-slider-item J_KBSlider-item J_KBSlider-item'+i+'" href="'+slide.href+'"><img data-src="' + slide.img + '" alt="'+(slide.alt||'')+'" /></a>');
           _handles.push('<a href="javascript:void(0);" data-index="' + i + '" class="kb-slider-step J_KBSlider-step"></a>');
         });
         var slider = [
@@ -78,7 +78,7 @@ KISSY.add(function (S, Base, Node) {
         var footer = [
           '<a class="kb-dialog-btn" target="_blank" href="',config.updateUrl,'">',
             '<span>',config.updateGuid,'</span>',
-            '<img src="',config.updateBtn,'" alt="" />',
+            '<img data-src="',config.updateBtn,'" alt="" />',
           '</a>'
         ].join('');
         content = slider + footer;
@@ -123,11 +123,11 @@ KISSY.add(function (S, Base, Node) {
       }).delegate('slider.show', '.J_KBSlider-item', function (e) {
         Node.one(e.target).animate({
           left: 0
-        }, '.4', 'easeBothStrong');
+        }, '.4', 'boundBothStrong');
       }).delegate('slider.hide', '.J_KBSlider-item', function (e) {
         var $this = Node.one(e.target).animate({
           left: '-100%'
-        }, '.4', 'easeBothStrong', function () {
+        }, '.4', 'boundBothStrong', function () {
           $this.css('left', '100%');
         });
       }).delegate('click.prev', '.J_KBSlider-prev', function (e) {
@@ -163,6 +163,10 @@ KISSY.add(function (S, Base, Node) {
           self.fire('show');
         });
         $dialog.fire('slider.start');
+        $dialog.all('img').each(function () {
+          var $img = Node.one(this);
+          $img.attr('src', $img.attr('data-src'));
+        });
       }).on('hide', function () {
         $dialog.fire('slider.stop');
         $mask.animate({
