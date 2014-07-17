@@ -1,44 +1,44 @@
 #pupUplayer{
-	position: absolute;
-	z-index: 10000 !important;
-	overflow: hidden;
-	height: 100%;
+  position: absolute;
+  z-index: 10000 !important;
+  overflow: hidden;
+  height: 100%;
     width:100%;
-	text-align: center;
-	top: 0;
+  text-align: center;
+  top: 0;
 }
 #pupUplayer_tipel {
-	position: static;
-	width: 100%;
-	height: 0;
-	left: 0;
-	bottom: 0;
-	overflow: hidden;
-	z-index: 100000 !important;
-	top: 0 \9;
-	_top: 0;
+  position: static;
+  width: 100%;
+  height: 0;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 100000 !important;
+  top: 0 \9;
+  _top: 0;
 
 }
 #pupUplayer_tipel p {
-	 margin: 0;
-	 padding: 0;
-	 line-height: 45px;
-	 color: #fff;
-	 font-size: 13px;
-	 text-indent: 16px;
+   margin: 0;
+   padding: 0;
+   line-height: 45px;
+   color: #fff;
+   font-size: 13px;
+   text-indent: 16px;
 }
 #pupUplayer_tipel p a {
-	 color: #fff;
-	 text-decoration: none;
-	 width: 220px;
-	 *margin-top: 1px;
-	 _margin-top: 6px;
-	 line-height: 33px;
-	 height: 33px;
+   color: #fff;
+   text-decoration: none;
+   width: 220px;
+   *margin-top: 1px;
+   _margin-top: 6px;
+   line-height: 33px;
+   height: 33px;
 }
 #pupUplayer_tipel p a:hover {
-	 color: #fff;
-	 text-decoration: underline;
+   color: #fff;
+   text-decoration: underline;
 }
 #pupUplayer_tipel .browser-updator-wrapper {
     position: relative;
@@ -51,8 +51,8 @@
 }
 
 #pupUplayer_tipel .browser-updator-browser span{
-	margin-top: 0px;
-	margin-left: -12px;
+  margin-top: 0px;
+  margin-left: -12px;
 }
 #pupUplayer_tipel .browser-updator-browser {
     display: inline-block;
@@ -67,26 +67,26 @@
 }
 
 #pupUplayer .pUl_container {
-	width:860px;
-	margin:0 auto;
-	position:relative;
-	z-index:0;
-	display: none;
+  width:860px;
+  margin:0 auto;
+  position:relative;
+  z-index:0;
+  display: none;
     *zoom:1;
 }
 
 #pupUplayer .explaSlide {
-	width:860px;
-	height:342px;
-	position:relative;
+  width:860px;
+  height:342px;
+  position:relative;
     *zoom:1;
 }
 #pupUplayer .close-btn{
-	position: absolute;
-	right: 0;
-	top: 0;
-	z-index: 101;
-	cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 101;
+  cursor: pointer;
     display: block;
     width:29px;
     height:29px;
@@ -100,114 +100,114 @@
     display: block;
 }
 #pupUplayer .down-close{
-	position: absolute;
-	z-index: 102;
-	right: 0;
-	top: 2px;
+  position: absolute;
+  z-index: 102;
+  right: 0;
+  top: 2px;
     _top:0;
 
-	visibility: hidden;
-	cursor: pointer;
+  visibility: hidden;
+  cursor: pointer;
 }
 #pupUplayer .down_close_btn{
-	margin-left: -4px;
+  margin-left: -4px;
 }
 
 #pupUplayer #slides {
-	position:absolute;
-	top:0;
+  position:absolute;
+  top:0;
     left: 0;
-	z-index:100;
+  z-index:100;
 }
 
 #pupUplayer .next, #pupUplayer .prev {
-	position:absolute;
-	top:138px;
-	left:23px;
-	width:24px;
-	height:43px;
-	display:block;
-	z-index:101;
+  position:absolute;
+  top:138px;
+  left:23px;
+  width:24px;
+  height:43px;
+  display:block;
+  z-index:101;
 }
 #pupUplayer .next span, #pupUplayer .prev span{
-	font-size: 43px;
-	font-weight: lighter;
-	position: absolute;
-	top: 10px;
-	left: -4px;
+  font-size: 43px;
+  font-weight: lighter;
+  position: absolute;
+  top: 10px;
+  left: -4px;
 }
 
 #pupUplayer .slides_container {
-	width:860px;
-	height:343px;
-	overflow:hidden;
-	position:relative;
-	/*display:none;*/
+  width:860px;
+  height:343px;
+  overflow:hidden;
+  position:relative;
+  /*display:none;*/
 }
 
 #pupUplayer .slides_container a {
-	width:860px;
-	height:343px;
-	display:block;
+  width:860px;
+  height:343px;
+  display:block;
 }
 
 #pupUplayer .next {
-	left:814px;
+  left:814px;
 }
 
 #pupUplayer .pagination {
-	position: absolute;
-	padding-left: 0;
-	top: 324px;
-	text-align: center;
-	width: 100%;
+  position: absolute;
+  padding-left: 0;
+  top: 324px;
+  text-align: center;
+  width: 100%;
     left:50%;
     margin-left: -40px;
 }
 
 #pupUplayer .pagination li {
-	margin:0 4px;
+  margin:0 4px;
     float: left;
 }
 
 #pupUplayer .pagination a {
 
-	display:block;
-	height: 14px;
-	width: 14px;
-	background-color: #595959;
-	text-align: center;
-	border-radius: 7px;
-	cursor: pointer;
+  display:block;
+  height: 14px;
+  width: 14px;
+  background-color: #595959;
+  text-align: center;
+  border-radius: 7px;
+  cursor: pointer;
 }
 
 #pupUplayer .pagination li.current a {
-	background-color: #fff;
-	width: 13px;
-	height: 13px;
+  background-color: #fff;
+  width: 13px;
+  height: 13px;
 }
 
 #pupUplayer .explaChoice{
-	position: relative;
-	width: 860px;
+  position: relative;
+  width: 860px;
 }
 #pupUplayer #infact_btn{
-	position: absolute;
-	right: 170px;
-	top: 49px;
+  position: absolute;
+  right: 170px;
+  top: 49px;
 }
 #pupUplayer .layer_btn_type{
-	position: absolute;
-	top: 55px;
-	left: 560px;
+  position: absolute;
+  top: 55px;
+  left: 560px;
 }
 #pupUplayer .explaChoice a span{
-	color: #fff;
-	position: absolute;
-	top: 53px;
-	left: 115px;
-	font-size: 32px;
-	width: 500px;
+  color: #fff;
+  position: absolute;
+  top: 53px;
+  left: 115px;
+  font-size: 32px;
+  width: 500px;
 }
 #pupUplayer #down{
     position: absolute;
@@ -226,7 +226,7 @@
 
 #pupUplayer a:link, #pupUplayer a:visited,
 #pupUplayer a:hover, #pupUplayer a:active{
-	color:#fff;
-	text-decoration:none;
-	cursor: pointer;
+  color:#fff;
+  text-decoration:none;
+  cursor: pointer;
 }

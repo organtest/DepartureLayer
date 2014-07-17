@@ -1,84 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8"/>
-  <meta name="spm-id" content="608.2291429" />
-  <link rel="stylesheet" href="http://g.tbcdn.cn/tb/global/2.9.7/global-min.css">
-  <script src="http://g.tbcdn.cn/??kissy/k/1.4.2/seed-min.js"></script>
+    <meta charset="utf-8"/>
+    <meta name="spm-id" content="608.2291429" />
+    <link rel="stylesheet" href="http://g.tbcdn.cn/tb/global/2.9.7/global-min.css">
+    <script src="http://g.tbcdn.cn/??kissy/k/1.4.2/seed-min.js"></script>
 </head>
-<body>
+<body style="height: 1000px;">
 <script type="text/javascript">
-  (function (d) {
-    var t = d.createElement("script");
-    t.type = "text/javascript";
-    t.async = true;
-    t.id = "tb-beacon-aplus";
-    t.setAttribute("exparams", "category=&userid=&at_bucketid=jhs%5fju%5f6&aplus");
-    t.src = ("https:" == d.location.protocol ? "https://s" : "http://a") + ".tbcdn.cn/s/aplus_v2.js";
-    d.getElementsByTagName("head")[0].appendChild(t);
-  })(document);
+    (function (d) {
+        var t = d.createElement("script");
+        t.type = "text/javascript";
+        t.async = true;
+        t.id = "tb-beacon-aplus";
+        t.setAttribute("exparams", "category=&userid=&at_bucketid=jhs%5fju%5f6&aplus");
+        t.src = ("https:" == d.location.protocol ? "https://s" : "http://a") + ".tbcdn.cn/s/aplus_v2.js";
+        d.getElementsByTagName("head")[0].appendChild(t);
+    })(document);
 </script>
 
 <script charset="utf-8">
-  (function (S) {
-    if(S.Config.debug) {
-      S.config({
-        packages:[{
-          name: 'gallery/DepartureLayer',
-          path: '../../',
-          charset: 'utf-8',
-          ignorePackageNameInUri: true
-        }]
-      });
-    }
-
-    S.use('gallery/DepartureLayer/1.0/index', function (S, DepartureLayer) {
-      var killer = new DepartureLayer({
-        ua: [
-          {
-            browser: 'ie',
-            version: '<7',
-            show: 'all'
-          },
-          {
-            browser: 'ie',
-            version: '<8',
-            show: 'toptip'
-          }
-        ],
-        expires: 0
-      });
-      killer.kill();
-      var killerIE8 = new DepartureLayer({
-        ua:[{
-          browser: 'ie',
-          version: '~8',
-          show: 'dialog'
-        }],
-        expires: 0,
-        // dialog: '<p>What ?<br />WTF, U R using IE?!<br/> This is a bad browser 8 ≤ IE &lt;10</p>',
-        toptip: 'WTF, U R using IE?!'
-      });
-      killerIE8.kill();
-
-      var kissChrome = new DepartureLayer({
-        ua: [
-          {
-            browser: 'chrome',
-            version: '>=10',
-            show: 'all'
-          }
-        ],
-        expires: 0,
-        dialog: 'Why are U so diao~~',
-        toptip: 'Chrome的版本 ≥10 才会看到这个噢~'
-      });
-      kissChrome.kill(function (Store, dialog, toptip) {
-        window.console && window.console.log(Store, dialog, toptip)
-      });
-      // alert(killer.browser+' '+killer.version + killer.options.toptip)
-    });
-  })(KISSY);
+    (function (S) {
+        if(S.Config.debug){
+            S.config({
+                packages:[
+                    {
+                        name:"gallery/DepartureLayer",
+                        path:"../../",
+                        charset:"utf-8",
+                        ignorePackageNameInUri:true
+                    }
+                ]
+            });
+        }
+        S.use('gallery/DepartureLayer/1.0/index,gallery/DepartureLayer/1.0/DepartureLayer.css', function (S, DepartureLayer) {
+            var departureLayer = new DepartureLayer({
+                browser: [
+                    { browser: 'ie', maxversion: '10'},
+                    { browser: 'chrome', maxversion: '36'}
+                ]
+            });
+            departureLayer.show();
+        });
+    })(KISSY);
 </script>
 
 </body>
