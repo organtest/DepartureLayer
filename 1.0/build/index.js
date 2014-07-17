@@ -96,9 +96,9 @@ KISSY.add('gallery/DepartureLayer/1.0/toptip',function (S, Base, Node) {
           config.title+
           '</span><a href="'+
           config.href+
-          '" target="_blank" class="kb-toptip-btn">'+config.button+'</a>';
+          '" target="_blank" data-spm-click="gostr=/ued;locaid=btn2" class="kb-toptip-btn">'+config.button+'</a>';
       }
-      var $toptip = self.$toptip = Node('<div class="kb-toptip kb-toptip-wrapper">' + 
+      var $toptip = self.$toptip = Node('<div data-spm="20140707" class="kb-toptip kb-toptip-wrapper">' + 
           content + 
           '</div>').prependTo('body').hide().on('show', function () {
         $toptip.show().animate({

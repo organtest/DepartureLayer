@@ -61,7 +61,7 @@ KISSY.add(function (S, Base, Node) {
 
         S.each(config.slider.slice(0,5), function (slide, i) {
           _slides.push('<a class="kb-slider-item J_KBSlider-item J_KBSlider-item'+i+'" href="'+slide.href+'"><img data-src="' + slide.img + '" alt="'+(slide.alt||'')+'" /></a>');
-          _handles.push('<a href="javascript:void(0);" data-index="' + i + '" class="kb-slider-step J_KBSlider-step"></a>');
+          _handles.push('<a href="javascript:void(0);" data-spm-click="gostr=/ued;locaid=dot'+i+'" data-index="' + i + '" class="kb-slider-step J_KBSlider-step"></a>');
         });
         var slider = [
           '<div class="kb-slider J_KBSlider">',
@@ -69,14 +69,14 @@ KISSY.add(function (S, Base, Node) {
               _slides.join(''),
             '</div>',
             '<div class="kb-slider-handle">',
-              '<a href="javascript:void(0);" class="kb-slider-prev J_KBSlider-prev">‹</a><div>',
+              '<a href="javascript:void(0);" data-spm-click="gostr=/ued;locaid=prev" class="kb-slider-prev J_KBSlider-prev">‹</a><div>',
               _handles.join(''),
-              '</div><a href="javascript:void(0);" class="kb-slider-next J_KBSlider-next">›</a>',
+              '</div><a href="javascript:void(0);" data-spm-click="gostr=/ued;locaid=next" class="kb-slider-next J_KBSlider-next">›</a>',
             '</div>',
           '</div>'
         ].join('');
         var footer = [
-          '<a class="kb-dialog-btn" target="_blank" href="',config.updateUrl,'">',
+          '<a class="kb-dialog-btn" data-spm-click="gostr=/ued;locaid=btn1" target="_blank" href="',config.updateUrl,'">',
             '<span>',config.updateGuid,'</span>',
             '<img data-src="',config.updateBtn,'" alt="" />',
           '</a>'
@@ -85,8 +85,8 @@ KISSY.add(function (S, Base, Node) {
       }
       var $mask = Node('<div class="kb-mask"></div>').appendTo('body');
       var $dialog = self.$dialog = Node([
-        '<div class="kb-dialog"><!--[if IE 6]><span class="kb-dialog-refer"></span><![endif]--><div class="kb-dialog-wrapper J_KBDialog">',
-          '<a href="javascript:void(0);"  class="kb-dialog-close-wrapper J_KBClose">',
+        '<div class="kb-dialog" data-spm="20140707"><!--[if IE 6]><span class="kb-dialog-refer"></span><![endif]--><div class="kb-dialog-wrapper J_KBDialog">',
+          '<a href="javascript:void(0);" data-spm-click="gostr=/ued;locaid=close" class="kb-dialog-close-wrapper J_KBClose">',
             '<span class="kb-close">✕</span>',
             config.closeWarn ? '<span class="kb-warn">'+config.closeWarn+'</span>':'',
           '</a>',
