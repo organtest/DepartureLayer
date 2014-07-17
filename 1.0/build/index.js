@@ -2,445 +2,394 @@
 combined files : 
 
 gallery/DepartureLayer/1.0/store
-gallery/DepartureLayer/1.0/toptip
 gallery/DepartureLayer/1.0/index
 
 */
 /**
  * @fileOverview 本地存储
  * @creator 槿瑟<jinse.zjw@alibaba-inc.com>
- * @modify 良田<chenhao.lch@alibaba-inc.com>
- * @update 2014-07-15
- * @log 
- *   更新 var 按照规范
- *   更新 tabsize 按照规范
+ * @update 2014-07-02
  */
 KISSY.add('gallery/DepartureLayer/1.0/store',function(S) {
-	var api               = {};
-	var win               = window;
-	var doc               = win.document;
-	var localStorageName  = 'localStorage';
-	var globalStorageName = 'globalStorage';
-	var storage;
+    var api               = {},
+        win               = window,
+        doc               = win.document,
+        localStorageName  = 'localStorage',
+        globalStorageName = 'globalStorage',
+        storage;
 
-	api.set    = function (key, value) {};
-	api.get    = function (key)        {};
-	api.remove = function (key)        {};
-	api.clear  = function ()           {};
+    api.set    = function (key, value) {};
+    api.get    = function (key)        {};
+    api.remove = function (key)        {};
+    api.clear  = function ()           {};
 
-	if (localStorageName in win && win[localStorageName]) {
-		storage    = win[localStorageName];
-		api.set    = function (key, val) { storage.setItem(key, val) };
-		api.get    = function (key)      { return storage.getItem(key) };
-		api.remove = function (key)      { storage.removeItem(key) };
-		api.clear  = function ()         { storage.clear() };
-	} else if (globalStorageName in win && win[globalStorageName]) {
-		storage    = win[globalStorageName][win.location.hostname];
-		api.set    = function (key, val) { storage[key] = val };
-		api.get    = function (key)      { return storage[key] && storage[key].value };
-		api.remove = function (key)      { delete storage[key] };
-		api.clear  = function ()         { for (var key in storage ) { delete storage[key] } };
-	} else if (doc.documentElement.addBehavior) {
-		function getStorage() {
-			if (storage) { return storage }
-			storage = doc.body.appendChild(doc.createElement('div'));
-			storage.style.display = 'none';
-			// See http://msdn.microsoft.com/en-us/library/ms531081(v=VS.85).aspx
-			// and http://msdn.microsoft.com/en-us/library/ms531424(v=VS.85).aspx
-			storage.addBehavior('#default#userData');
-			storage.load(localStorageName);
-			return storage;
-		}
-		api.set = function (key, val) {
-			var storage = getStorage();
-			storage.setAttribute(key, val);
-			storage.save(localStorageName);
-		};
-		api.get = function (key) {
-			var storage = getStorage();
-			return storage.getAttribute(key);
-		};
-		api.remove = function (key) {
-			var storage = getStorage();
-			storage.removeAttribute(key);
-			storage.save(localStorageName);
-		}
-		api.clear = function () {
-			var storage = getStorage();
-			var attributes = storage.XMLDocument.documentElement.attributes;;
-			storage.load(localStorageName);
-			for (var i=0, attr; attr = attributes[i]; i++) {
-				storage.removeAttribute(attr.name);
-			}
-			storage.save(localStorageName);
-		}
-	}
-	return api;
-});
-KISSY.add('gallery/DepartureLayer/1.0/toptip',function (S, Base, Node) {
-  function Toptip () {}
-  var props = {
-    render: function (config) {
-      var self = this;
-      var content;
-      if (S.isString(config)) {
-        content = config;
-      } else {
-        config = S.mix({
-          title : '亲，您的浏览器版本过低导致网页打开速度过慢，为享受极速体验，我们建议亲：',
-          button : '升级浏览器',
-          href: 'http://windows.microsoft.com/zh-cn/windows/downloads'
-        }, config, true, null, true);
+    if (localStorageName in win && win[localStorageName]) {
+        storage    = win[localStorageName];
+        api.set    = function (key, val) { storage.setItem(key, val) };
+        api.get    = function (key)      { return storage.getItem(key) };
+        api.remove = function (key)      { storage.removeItem(key) };
+        api.clear  = function ()         { storage.clear() };
 
-        content = '<span class="kb-toptip-title">'+
-          config.title+
-          '</span><a href="'+
-          config.href+
-          '" target="_blank" data-spm-click="gostr=/ued;locaid=btn2" class="kb-toptip-btn">'+config.button+'</a>';
-      }
-      var $toptip = self.$toptip = Node('<div data-spm="20140707" class="kb-toptip kb-toptip-wrapper">' + 
-          content + 
-          '</div>').prependTo('body').hide().on('show', function () {
-        $toptip.show().animate({
-          marginTop: 0
-        }, '.4', 'easeBothStrong', function(){
-          self.fire('show');
-        });
-      }).on('hide', function () {
-        $toptip.animate({
-          marginTop: -45
-        }, '.4','easeBothStrong', function () {
-          $toptip.hide();
-          self.fire('hide');
-        });
-      });
-      return this;
-    },
-    show: function () {
-      this.$toptip.fire('show');
-      return this;
-    },
-    hide: function () {
-      this.$toptip.fire('hide');
-      return this;
+    } else if (globalStorageName in win && win[globalStorageName]) {
+        storage    = win[globalStorageName][win.location.hostname];
+        api.set    = function (key, val) { storage[key] = val };
+        api.get    = function (key)      { return storage[key] && storage[key].value };
+        api.remove = function (key)      { delete storage[key] };
+        api.clear  = function ()         { for (var key in storage ) { delete storage[key] } };
+
+    } else if (doc.documentElement.addBehavior) {
+        function getStorage() {
+            if (storage) { return storage }
+            storage = doc.body.appendChild(doc.createElement('div'));
+            storage.style.display = 'none';
+            // See http://msdn.microsoft.com/en-us/library/ms531081(v=VS.85).aspx
+            // and http://msdn.microsoft.com/en-us/library/ms531424(v=VS.85).aspx
+            storage.addBehavior('#default#userData');
+            storage.load(localStorageName);
+            return storage;
+        }
+        api.set = function (key, val) {
+            var storage = getStorage();
+            storage.setAttribute(key, val);
+            storage.save(localStorageName);
+        };
+        api.get = function (key) {
+            var storage = getStorage();
+            return storage.getAttribute(key);
+        };
+        api.remove = function (key) {
+            var storage = getStorage();
+            storage.removeAttribute(key);
+            storage.save(localStorageName);
+        }
+        api.clear = function () {
+            var storage = getStorage();
+            var attributes = storage.XMLDocument.documentElement.attributes;;
+            storage.load(localStorageName);
+            for (var i=0, attr; attr = attributes[i]; i++) {
+                storage.removeAttribute(attr.name);
+            }
+            storage.save(localStorageName);
+        }
     }
-  };
-  var members = {};
-  if (Base.extend) {
-    return Base.extend(props, members);
-  } else {
-    return S.extend(Toptip, props, members);
-  }
-},{
-  requires:['base', 'node']
+    return api;
 });
 /**
  * @fileOverview  @DepartureLayer
+ * @extends  KISSY.Base
  * @creator 槿瑟<jinse.zjw@alibaba-inc.com>
- * @uses 良田 <chenhao.lch@alibaba-inc.com>
  * @version 1.0
- * @update 2014-07-16
+ * @update 2014
  * @example
  *
- *    KISSY.use('gallery/DepartureLayer/1.0/index', function(S,BK){
- *           var killer = new BK({   
- *               browser : [
- *                 { 
- *                   browser:'ie', 
- *                   version: '<8',
- *                   show: 'all'
- *                 },
- *                 { 
- *                   browser: 'chrome', 
- *                   version: '<36',
- *                   show: 'toptip'
- *                 },
- *                 {
- *                   browser: 'firefox',
- *                   version: '<=10',
- *                   show: 'dialog'
- *                 }
- *               ], 
- *               expires: 20000000,
- *               theme: 'work/resetui.css',
- *               dialog : {
- *                   updateUrl : 'http://windows.microsoft.com/zh-cn/internet-explorer/download-ie',
- *                   updateGuid : '其实...亲有更好的选择',
- *                   closeWarn: "不，我还要用这悲催的方式浏览",
- *                   updateBtn: 'http://gtms03.alicdn.com/tps/i3/TB1RcVQFVXXXXbvXFXXcgZpFXXX-140-48.png',
- *                   slider : [ 
- *                   {
- *                     img: 'http://gtms01.alicdn.com/tps/i1/TB1UpxsFVXXXXbIXXXXIXul4XXX-860-342.png',
- *                     href: VOID_DEFAULT,
- *                     alt: ""
- *                   }, {
- *                     img:'http://gtms02.alicdn.com/tps/i2/TB1d9prFVXXXXc1XXXXl0Cl4XXX-860-343.png',
- *                     href: VOID_DEFAULT,
- *                     alt: ""
- *                   },{
- *                     img: 'http://gtms03.alicdn.com/tps/i3/TB1OORrFVXXXXcbXXXXIXul4XXX-860-342.png',
- *                     href: VOID_DEFAULT,
- *                     alt: ""
- *                   }
- *                 ]
- *               },
- *               toptip : 
+ *    KISSY.use('gallery/DepartureLayer/1.0/index', function(S,DepartureLayer){
+ *           var departureLayer = new DepartureLayer(
+ *           {   
+ *               browser : [{ browser:'ie', maxversion: '10'},{ browser:'chrome', maxversion: '36'}], 
+ *               intervalTime : '10000',     
+ *               layer : 
  *               {
- *                   title : '亲，您的浏览器版本过低导致图片打开速度过慢，提升打开速度您可以：',
- *                   button : '升级浏览器',
- *                   href: 'http://windows.microsoft.com/zh-cn/internet-explorer/download-ie' 
- *               }
- *           });
- *           killer.kill();
+ *                   tip : '其实...亲有更好的选择',
+ *                   btn_type_pic : 'http://gtms04.alicdn.com/tps/i4/TB1kLVqFVXXXXX1XpXXJPIyFpXX-143-56.png',
+ *                   imgsrc : [ 'http://gtms01.alicdn.com/tps/i1/TB1UpxsFVXXXXbIXXXXIXul4XXX-860-342.png',
+ *                              'http://gtms02.alicdn.com/tps/i2/TB1d9prFVXXXXc1XXXXl0Cl4XXX-860-343.png' ,
+ *                              'http://gtms03.alicdn.com/tps/i3/TB1OORrFVXXXXcbXXXXIXul4XXX-860-342.png']
+ *               },
+ *               toptipBar : 
+ *               {
+ *                   enable : true,
+ *                   toptip_text : '亲，您的浏览器版本过低导致图片打开速度过慢，提升打开速度您可以：',
+ *                   toptip_btn_text : '升级浏览器'
+ *               },
+ *               updateLink : 'http://windows.microsoft.com/zh-cn/internet-explorer/download-ie' 
+ *           }
+ *           );
+ *           departureLayer.show();
  *       });
  *   })(KISSY);
- * 
  */
-KISSY.add('gallery/DepartureLayer/1.0/index',function (S, UA, Store) {
-  // This package path
-  var packagePath = 'gallery/DepartureLayer/1.0/';
-  // Support tokens < > <= >= = ~ d-d
-  var reToken = /^\s*([<>=~]{0,2})\s*(\d+)\s*$|^\s*(\d+)\s*\-\s*(\d+)\s*$/i;
-  // noop func for hack
-  var noop = S.noop;
-  // one week time (ms)
-  var ONE_WEEK_TIME = 1000 * 60 * 60 * 24 * 7;
-  // localStorage key
-  var BROWSER_KILLER_TIME_STAMP = 'bk_timestamp';
-  /**
-   * get a version string like `>=12` => function (version) {return boolean}
-   * @param  {String} version   All support string for version check 
-   * @return {Function}         The function for check version
-   */
-  function _version2func (version) {
-    // all version
-    if (version === '*') {
-      return function () {
-        return true;
-      };
-    }
-    var matched = version.match(reToken);
-    // Match nothing
-    if (!matched) {
-      S.log('Unexpacted version: ' + version);
-      return noop;
-    }
+KISSY.add('gallery/DepartureLayer/1.0/index',function(S,CORE,UA,Anim,Storage) {
+    var $= S.all,DOM = S.DOM,WEEK_MS= 1000 * 60 * 60 * 24 * 7;
+    /**
+    * @class xx
+    * @constructor
+    * @param {Object} config 配置对象   DepartureLayer
+    */
+    function DepartureLayer(comconfig){
+        var self = this;
+        
+        if (!(self instanceof DepartureLayer)) {
+            return new DepartureLayer(comconfig);
+        }
+        var newconfig = self._mymix(DepartureLayer.ATTRS, comconfig);
 
-    // use `<=` as default 
-    var rangeCheckToken = matched[1] || '<=';
-    // get the max version number (in first case <=d)
-    var maxVersion = +matched[2];
-    // get the min version number (in second case d-d)
-    var minVersion = +matched[3];
-    // < > <= >= ~ =  first case
-    if (rangeCheckToken && maxVersion) {
-      // range check 
-      if (rangeCheckToken === '~') {
-        var min = maxVersion;
-        var max = (maxVersion / 10 | 0) + 10; // what to do this ?
-        return function (version) {
-          return version && version < max && version >= min;
-        };
-      }
-      // equal check
-      if (rangeCheckToken === '=') {
-        rangeCheckToken = '==';
-      }
-      // create function
-      return new Function('version', 'return null != version && version > 0.1 && (version '+ rangeCheckToken + ' ' + maxVersion +');');
-    // d-d second case
-    } else if ((maxVersion = matched[4]) && minVersion) {
-      return function (version) {
-        return version >= minVersion && version <= maxVersion;
-      }
-    // don't support ? throw Error
-    } else {
-      S.log('Unexpacted version: ' + version);
-    }
-  }
-  /**
-   * UACheck , check ua and do something
-   * @param {Object} config the config for init
-   * @example
-   *   new UACheck({
-   *     'ua': [],
-   *     'dialog': '',
-   *     'toptip': {},
-   *     'theme': '',
-   *     'expires': 123123
-   *   });
-   */
-  function UACheck (config) {
-    if (!(this instanceof UACheck)) {
-      return new UACheck(config);
-    }
-    return this.config(config);
-  }
+        // 负责ATTRS参数get,set，KISSY.Base处理配置参数
+        DepartureLayer.superclass.constructor.call(self, newconfig);
 
-  UACheck.prototype = {
-    constructor: UACheck,
-    config: function (config) {
+    }
+    //继承于KISSY.Base
+    S.extend(DepartureLayer, S.Base);
+    
+    DepartureLayer.VERSION = 1.0; // 不同版本号是不同目录
+
+    /**
+     * 设置参数
+     */
+    DepartureLayer.ATTRS = {
+        //是否显示更新提示
+    browser: {
+      value: [{ browser:'ie', maxversion: '7'}],
+      setter: function(v){
+        return v;
+      }
+    },
+    intervalTime: {
+      value: WEEK_MS,       //  间隔时间，以ms为单位，默认为WEEK_MS 
+      setter: function(v){
+        return v;
+      }
+    },
+    layer: {
+      value: {
+                    tip : '其实...亲有更好的选择',
+                    btn_type_pic : 'http://gtms03.alicdn.com/tps/i3/TB1RcVQFVXXXXbvXFXXcgZpFXXX-140-48.png',
+                    imgsrc : [ 'http://gtms01.alicdn.com/tps/i1/TB1UpxsFVXXXXbIXXXXIXul4XXX-860-342.png',
+                               'http://gtms02.alicdn.com/tps/i2/TB1d9prFVXXXXc1XXXXl0Cl4XXX-860-343.png' ,
+                               'http://gtms03.alicdn.com/tps/i3/TB1OORrFVXXXXcbXXXXIXul4XXX-860-342.png']
+                },
+      setter: function(v){
+        return v;
+      }     
+    },
+    toptipBar: {
+      value: {
+                    enable : true,
+                    toptip_text : '亲，您的浏览器版本过低导致图片打开速度过慢，提升打开速度您可以：',
+                    toptip_btn_text : '升级浏览器'
+                },
+      setter: function(v){
+        return v;
+      }
+    },
+    updateLink: {
+      value: 'http://windows.microsoft.com/zh-cn/windows/downloads',
+      setter: function(v){
+        return v;
+      }     
+    }
+    };
+    /**
+     * 方法
+     */
+    S.augment(DepartureLayer, {
+         /**
+         * 运行
+         */
+     show:function(){
       var self = this;
+      //  Storage.clear();
+      S.ready(function(S){
+                self._uaTest(Storage);
+            });
+     },
+        /**
+         * 运行
+         * @return {Object} 对象
+         */
+     render:function(Storage){
+        var self = this;
+        var html1 = self._getHtml(Storage);
+        var supernatant =  $(html1);
+        supernatant.prependTo("body");
+
+        if(Storage.get("tipBar")==1 && !self._shouldLayerPrompt(Storage)){
+            var tipEl =S.get('#pupUplayer_tipel')
+          DOM.show(tipEl);
+            var anim = new Anim(tipEl, {
+                  height: 45
+            }, .3, "easeOut");
+            return anim.run();
+          }else{
+          S.use('gallery/slide/1.3/index', function(S,Slide){
+            Storage.remove("tipBar");
+            DOM.style("#down","height",DOM.docHeight());
+            var viewPortHeight = DOM.viewportHeight();
+            var verticalHeight = viewPortHeight/2-266;
+            var pULContainer = S.all("#pupUplayer .pUl_container");
+            DOM.style(pULContainer,"marginTop",verticalHeight+"px");    
+            DOM.style(pULContainer,"display","block");
+
+            C = new Slide('slides',{
+              autoSlide:true,
+              hoverStop:true,
+              effect:'hSlide',
+              timeout:4000,
+              speed:400,
+              invisibleStop:true,
+              eventType:'click',
+              defaultTab:0,
+              selectedClass:'current',
+              carousel:true
+            });
+            if(self.get('layer').imgsrc.length == 1){
+              DOM.style("#pupUplayer .pagination","visibility","hidden");
+              $("#pupUplayer .next span").hide();
+              $("#pupUplayer .prev span").hide();
+            }
+          self._EventDelegate();
+
+          });
+        }
+     },
+     _EventDelegate : function(){
+        var self = this;
+        var pupUplayer = S.all("#pupUplayer");
+        var downClose = S.all("#pupUplayer .down-close");
+        pupUplayer.delegate('click','.prev',function(e){
+            e.preventDefault();
+            C.previous();
+            if(C.autoSlide && C.stoped === false){
+              C.stop().play();
+            }
+        });
+        pupUplayer.delegate('click','.next',function(e){
+            e.preventDefault();
+            C.next();
+            if(C.autoSlide && C.stoped === false){
+              C.stop().play();
+            }
+        });
+        pupUplayer.delegate('mouseenter','.closebtnspan',function(){
+            DOM.style(downClose,"visibility","visible");
+        });
+        pupUplayer.delegate('mouseleave','.down-close',function(){
+            DOM.style(downClose,"visibility","hidden");
+        });
+        pupUplayer.delegate('click','.down_close_btn',function(){
+            Storage.set("timeStamp",new Date().getTime());
+            DOM.style("#pupUplayer","display","none");
+            if(self.get('toptipBar').enable == true){
+              Storage.set("tipBar",1);
+              var tipEl =S.get('#pupUplayer_tipel')
+              DOM.show(tipEl);
+                var anim = new Anim(tipEl, {
+                    height: 45
+                }, .3, "easeOut");
+              return anim.run();
+            }
+        });
+     },
+     _getHtml : function(Storage){
+        var self = this;
+        var imageCount = self.get('layer').imgsrc.length;
+        var slideImg = '';
+        var slideLast = '';
+        for(var i=0;i<imageCount;i++) { 
+          slideImg = slideImg + '<div class="tab-pannel">\
+                    <a href="#"><img src="'+self.get('layer').imgsrc[i]+'"></a>\
+                  </div>';
+          slideLast = slideLast + '<li data-spm-click="gostr=/ued;locaid=dot'+i+'"><a href="javascript:void(0);"></a></li>';
+        }
+        
+        var supernatantTipBarHtml ='<div class="browser-updator" data-spm="20140707" id="pupUplayer_tipel" style="display:none;">\
+            <div class="browser-updator-wrapper">\
+              <p>\
+                <span>'+self.get('toptipBar').toptip_text+'</span>\
+                <a target="_blank" href="'+self.get('updateLink')+'" class="browser-updator-browser browser-updator-ie" data-spm-click="gostr=/ued;locaid=btn2">\
+                <span>'+self.get('toptipBar').toptip_btn_text+'</span></a>\
+              </p>\
+            </div>\
+            </div>',
+        supernatantHtml = supernatantTipBarHtml + 
+        '<div id="pupUplayer" data-spm="20140707">\
+          <div class="pUl_container">\
+            <div class="explaSlide">\
+              <div id="slides">\
+                <div class="slides_container tab-content" id="slideinsert1">'
+                +slideImg+
+                '</div>\
+                <a href="javascript:void(0);" class="prev" data-spm-click="gostr=/ued;locaid=prev">\
+                  <span>&lt;</span>\
+                </a>\
+                <a href="javascript:void(0);" class="next" data-spm-click="gostr=/ued;locaid=next">\
+                  <span>&gt;</span>\
+                </a>\
+                <ul class="tab-nav pagination">'
+                +slideLast+
+                '</ul>\
+              </div>\
+              <div class="close-btn" data-spm-click="gostr=/ued;locaid=close">\
+                <a href="javascript:void(0);">\
+                  <span class="closebtnspan">×</span>\
+                </a>\
+              </div>\
+              <div class="down-close" data-spm-click="gostr=/ued;locaid=close">\
+                <img src="http://gtms04.alicdn.com/tps/i4/TB1cnFlFVXXXXbaXVXX6ef0HXXX-202-29.png" />\
+                <img src="http://gtms01.alicdn.com/tps/i1/TB1l18oFVXXXXaNXpXXnU4yFVXX-26-29.png" class="down_close_btn"/>\
+              </div>\
+            </div>\
+            <div class="explaChoice">\
+              <img src="http://gtms01.alicdn.com/tps/i1/TB1nDdnFVXXXXXLXpXXBsd24XXX-860-158.jpg" width="860px" height="158px" alt="More choices.." />\
+              <a href="'+self.get('updateLink')+'" target="_blank">\
+                <img src="'+self.get('layer').btn_type_pic+'" class="layer_btn_type" data-spm-click="gostr=/ued;locaid=btn1"/>\
+                <span>'+self.get('layer').tip+'</span>\
+              </a>\
+            </div>\
+          </div>\
+          <div id="down"></div>\
+        <div>';
+
+            if (self._shouldLayerPrompt(Storage)){
+          return supernatantHtml;
+        }else if(Storage.get("tipBar")==1){
+          return supernatantTipBarHtml;
+        }
+     },
+     /**
+         * 判断浏览器版本是否符合要求
+         */
+        _checkVersion : function(Storage, type, version){
+          var self = this;
+        if(!UA[type])   return false;          
+          else
+            return UA[type] <= version;
+        },
+        _uaTest : function(Storage){
+            var self = this, count = self.get('browser').length, flag=false, i=0;
+
+            S.each(self.get('browser'),function(b){
+              if(self._checkVersion(Storage, b.browser, b.maxversion))
+                self.render(Storage);
+            });
+            return false;
+      },
       /**
-       * The default config
-       * @type {Object}
-       * @member ua {Array} The ua set
-       * @member theme {String} The theme wanted reset
-       * @member expires {long} The time for expires
-       * @member dialog {Object || String} The dialog config or the content html
-       * @member toptip {Object || String} The toptip config or the content html
-       */
-      var options = self.options = S.mix(self.options || {
-        // {
-        //   browser: 'ie',
-        //   version: '<7',
-        //   show: 'all'
-        // },
-        // {
-        //   browser: 'ie',
-        //   version: '<8',
-        //   show: 'toptip'
-        // }
-      
-        ua: [],
-        theme: '',
-        expires: ONE_WEEK_TIME,
-        dialog: {},
-        toptip: {}
-      }, config, true, null, true);
-      var uacheck = options.ua;
-      var ALL = 'all';
-      var DIALOG = 'dialog';
-      var TOPTIP = 'toptip';
-      var DEFAULT_SHOW = ALL;
-      S.each(uacheck, function (rule, i) {
-        if (self.matched) {return}
-        var browser = rule.browser;
-        var version = rule.version;
-        self.show = rule.show || DEFAULT_SHOW;
-        var target = +UA[browser];
-        if (!target) {
-          S.log('Warning: `config.ua[' + i + '].browser` is invalid. Found `' + UA[browser] + '` under the `KISSY.UA.' + browser + '`.');
-          return;
-        }
-        if (!version) {
-          S.log('Warning: `config.ua[' + i + '].version` is undefined!');
-          return;
-        }
-        self.browser = browser;
-        self.version = target;
-        self.rule = version;
-        self.match = _version2func(version);
-        self.matched = self.match(target);
-      });
-      return self;
-    },
-    matched: false,
-    /**
-     * check is out of expires
-     * @param  {long} time ms
-     * @return {integer}  enum 0 1
-     */
-    _outOfExpires: function (time) {
-      var timestamp = +Store.get(BROWSER_KILLER_TIME_STAMP);
-      if (!timestamp || !time || (+new Date - timestamp) > time) {
-        return 1;
+         *  判断浮层距离上次关闭时间是否超过 intervalTime
+         */
+        _shouldLayerPrompt : function(Storage){
+          var self = this;
+            var o = Storage.get("timeStamp");
+            var isMoreThanWeek = (new Date().getTime() - parseInt(o, 10)) > self.get('intervalTime');  
+            return (!o || isMoreThanWeek);
+        },
+    _mymix : function(defaultAttr, comconfig){
+      var self = this;
+      var attr = ['browser','toptipBar','intervalTime','layer','updateLink'];
+      if(!comconfig){
+        comconfig = defaultAttr;
+        for(var i=0; i<attr.length; i++){
+          comconfig[attr[i]] = defaultAttr[attr[i]].value;
+        }   
+        return comconfig;
+      } 
+      for(var i=0; i<attr.length; i++){
+        if(!comconfig[attr[i]]) comconfig[attr[i]] = defaultAttr[attr[i]].value;
       }
-      return 0;
-    },
-    /**
-     * load the toptip only
-     * @param  {Function} callback when the toptip init finished
-     * @return {null}            
-     */
-    _showToptip: function (callback) {
-      var self = this;
-      var options = self.options;
-      KISSY.use([
-        packagePath + 'toptip.js',
-        options.theme ? 
-          options.theme : 
-          packagePath + 'toptip.less.css'
-      ], function (S, Toptip) {
-        callback.call(self, Store, null, new Toptip().render(options.toptip).show());
-      });
-    },
-    /**
-     * load the dialog only
-     * @param  {Function} callback callback when the dialog init finished
-     * @return {null}           
-     */
-    _showDialog: function (callback) {
-      var self = this;
-      var options = self.options;
-      KISSY.use([
-        packagePath + 'dialog.js',
-        options.theme ? 
-          options.theme : 
-          packagePath + 'dialog.less.css'
-      ], function (S, Dialog) {
-        callback.call(self, Store, new Dialog().render(options.dialog).show());
-      });
-    },
-    /**
-     * load dialog and toptip
-     * @param  {Function} callback when the dialog and toptip init finished
-     * @notice When the dialog hide, the toptip show. But U can control this;
-     * @return {Null}
-     */
-    _showAll: function (callback) {
-      var self = this;
-      var options = self.options;
-      var modules = [packagePath + 'dialog.js',packagePath + 'toptip.js'];
-      if (options.theme) {
-        modules.push(options.theme);
-      } else {
-        modules.push(packagePath + 'dialog.less.css');
-        modules.push(packagePath + 'toptip.less.css');
-      }
-      KISSY.use(modules, function (S, Dialog, Toptip) {
-        var toptip = new Toptip().render(options.toptip);
-        callback.call(self, Store, new Dialog().render(options.dialog).show().on('hide', function () {
-          toptip && toptip.show();
-          Store.set(BROWSER_KILLER_TIME_STAMP, +new Date);
-        }), toptip);
-      });
-    },
-    /**
-     * run kill
-     * @param  {Function} callback 
-     * @return {UACheck}            self
-     */
-    kill: function (callback) {
-      var self = this;
-      var options = self.options;
-      callback = callback || noop;
-      if (self.matched) {
-        // out of expires ,just show the toptip
-        if (!self._outOfExpires(options.expires)) {
-          self.show = 'toptip';
-        }
-        if (self.show === 'toptip') {
-          self._showToptip(callback);
-          return self;
-        }
-        if (self.show === 'dialog') {
-          self._showDialog(callback);
-          return self;
-        }
-        self._showAll(callback);
-      }
-      return self;
+      comconfig.toptipBar = S.mix(comconfig.toptipBar, defaultAttr.toptipBar.value, false);
+      comconfig.layer = S.mix(comconfig.layer, defaultAttr.layer.value, false);       
+      return comconfig;
     }
-  };
-  // for version check 
-  UACheck.VERSION = '1.0';
-  return UACheck;
-}, {
-  requires: [
-    'ua',
-    './store.js',
-    './toptip.less.css',
-    './toptip.js'
-  ]
-});
+    });
+    return DepartureLayer;
+}, { requires: ['core','ua','anim','./store'] });
+
