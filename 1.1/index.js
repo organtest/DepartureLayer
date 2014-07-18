@@ -60,7 +60,7 @@
  *   })(KISSY);
  * 
  */
-KISSY.add(function (S, UA, Store) {
+KISSY.add(function (S, UA, Store, Dialog, Toptip) {
   // This package path
   var packagePath = this.path.split(/\/[^\/]+?$/)[0] + '/';
   // Support tokens < > <= >= = ~ d-d
@@ -220,11 +220,10 @@ KISSY.add(function (S, UA, Store) {
       var self = this;
       var options = self.options;
       KISSY.use([
-        packagePath + '/toptip.js',
         options.theme ? 
           options.theme : 
           packagePath + '/toptip.less.css'
-      ], function (S, Toptip) {
+      ], function (S) {
         callback.call(self, Store, null, new Toptip().render(options.toptip).show());
       });
     },
@@ -237,11 +236,10 @@ KISSY.add(function (S, UA, Store) {
       var self = this;
       var options = self.options;
       KISSY.use([
-        packagePath + '/dialog.js',
         options.theme ? 
           options.theme : 
           packagePath + '/dialog.less.css'
-      ], function (S, Dialog) {
+      ], function (S) {
         callback.call(self, Store, new Dialog().render(options.dialog).show());
       });
     },
@@ -254,14 +252,14 @@ KISSY.add(function (S, UA, Store) {
     _showAll: function (callback) {
       var self = this;
       var options = self.options;
-      var modules = [packagePath + '/dialog.js',packagePath + '/toptip.js'];
+      var modules = [];
       if (options.theme) {
         modules.push(options.theme);
       } else {
         modules.push(packagePath + '/dialog.less.css');
         modules.push(packagePath + '/toptip.less.css');
       }
-      KISSY.use(modules, function (S, Dialog, Toptip) {
+      KISSY.use(modules, function (S) {
         var toptip = new Toptip().render(options.toptip);
         callback.call(self, Store, new Dialog().render(options.dialog).show().on('hide', function () {
           toptip && toptip.show();
@@ -302,6 +300,8 @@ KISSY.add(function (S, UA, Store) {
 }, {
   requires: [
     'ua',
-    './store.js'
+    './store.js',
+    './dialog.js',
+    './toptip.js'
   ]
 });

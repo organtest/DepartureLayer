@@ -115,6 +115,7 @@ module.exports = function(grunt) {
                         src: ['**/*.less',
 							'!build/**/*.less',   
 							'!demo/**/*.less'],
+                        // dest: '<%= pkg.version %>',
                         dest: '<%= pkg.version %>/build/',
                         ext: '.less.css'
                     }
