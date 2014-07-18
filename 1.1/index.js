@@ -62,7 +62,7 @@
  */
 KISSY.add(function (S, UA, Store) {
   // This package path
-  var packagePath = 'gallery/DepartureLayer/1.0/';
+  var packagePath = this.path.split(/\/[^\/]+?$/)[0] + '/';
   // Support tokens < > <= >= = ~ d-d
   var reToken = /^\s*([<>=~]{0,2})\s*(\d+)\s*$|^\s*(\d+)\s*\-\s*(\d+)\s*$/i;
   // noop func for hack
@@ -140,7 +140,6 @@ KISSY.add(function (S, UA, Store) {
     }
     return this.config(config);
   }
-
   UACheck.prototype = {
     constructor: UACheck,
     config: function (config) {
@@ -221,10 +220,10 @@ KISSY.add(function (S, UA, Store) {
       var self = this;
       var options = self.options;
       KISSY.use([
-        packagePath + 'toptip.js',
+        packagePath + '/toptip.js',
         options.theme ? 
           options.theme : 
-          packagePath + 'toptip.less.css'
+          packagePath + '/toptip.less.css'
       ], function (S, Toptip) {
         callback.call(self, Store, null, new Toptip().render(options.toptip).show());
       });
@@ -238,10 +237,10 @@ KISSY.add(function (S, UA, Store) {
       var self = this;
       var options = self.options;
       KISSY.use([
-        packagePath + 'dialog.js',
+        packagePath + '/dialog.js',
         options.theme ? 
           options.theme : 
-          packagePath + 'dialog.less.css'
+          packagePath + '/dialog.less.css'
       ], function (S, Dialog) {
         callback.call(self, Store, new Dialog().render(options.dialog).show());
       });
@@ -255,12 +254,12 @@ KISSY.add(function (S, UA, Store) {
     _showAll: function (callback) {
       var self = this;
       var options = self.options;
-      var modules = [packagePath + 'dialog.js',packagePath + 'toptip.js'];
+      var modules = [packagePath + '/dialog.js',packagePath + '/toptip.js'];
       if (options.theme) {
         modules.push(options.theme);
       } else {
-        modules.push(packagePath + 'dialog.less.css');
-        modules.push(packagePath + 'toptip.less.css');
+        modules.push(packagePath + '/dialog.less.css');
+        modules.push(packagePath + '/toptip.less.css');
       }
       KISSY.use(modules, function (S, Dialog, Toptip) {
         var toptip = new Toptip().render(options.toptip);
@@ -298,13 +297,11 @@ KISSY.add(function (S, UA, Store) {
     }
   };
   // for version check 
-  UACheck.VERSION = '1.0';
+  UACheck.VERSION = '1.1';
   return UACheck;
 }, {
   requires: [
     'ua',
-    './store.js',
-    './toptip.less.css',
-    './toptip.js'
+    './store.js'
   ]
 });

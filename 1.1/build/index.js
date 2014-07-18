@@ -2,7 +2,6 @@
 combined files : 
 
 gallery/DepartureLayer/1.1/store
-gallery/DepartureLayer/1.1/toptip
 gallery/DepartureLayer/1.1/index
 
 */
@@ -77,63 +76,6 @@ KISSY.add('gallery/DepartureLayer/1.1/store',function(S) {
 	}
 	return api;
 });
-KISSY.add('gallery/DepartureLayer/1.1/toptip',function (S, Base, Node) {
-  function Toptip () {}
-  var props = {
-    render: function (config) {
-      var self = this;
-      var content;
-      if (S.isString(config)) {
-        content = config;
-      } else {
-        config = S.mix({
-          title : '亲，您的浏览器版本过低导致网页打开速度过慢，为享受极速体验，我们建议亲：',
-          button : '升级浏览器',
-          href: 'http://windows.microsoft.com/zh-cn/windows/downloads'
-        }, config, true, null, true);
-
-        content = '<span class="kb-toptip-title">'+
-          config.title+
-          '</span><a href="'+
-          config.href+
-          '" target="_blank" data-spm-click="gostr=/ued;locaid=btn2" class="kb-toptip-btn">'+config.button+'</a>';
-      }
-      var $toptip = self.$toptip = Node('<div data-spm="20140707" class="kb-toptip kb-toptip-wrapper">' + 
-          content + 
-          '</div>').prependTo('body').hide().on('show', function () {
-        $toptip.show().animate({
-          marginTop: 0
-        }, '.4', 'easeBothStrong', function(){
-          self.fire('show');
-        });
-      }).on('hide', function () {
-        $toptip.animate({
-          marginTop: -45
-        }, '.4','easeBothStrong', function () {
-          $toptip.hide();
-          self.fire('hide');
-        });
-      });
-      return this;
-    },
-    show: function () {
-      this.$toptip.fire('show');
-      return this;
-    },
-    hide: function () {
-      this.$toptip.fire('hide');
-      return this;
-    }
-  };
-  var members = {};
-  if (Base.extend) {
-    return Base.extend(props, members);
-  } else {
-    return S.extend(Toptip, props, members);
-  }
-},{
-  requires:['base', 'node']
-});
 /**
  * @fileOverview  @DepartureLayer
  * @creator 槿瑟<jinse.zjw@alibaba-inc.com>
@@ -198,7 +140,7 @@ KISSY.add('gallery/DepartureLayer/1.1/toptip',function (S, Base, Node) {
  */
 KISSY.add('gallery/DepartureLayer/1.1/index',function (S, UA, Store) {
   // This package path
-  var packagePath = 'gallery/DepartureLayer/1.0/';
+  var packagePath = this.path.split(/\/[^\/]+?$/)[0] + '/';
   // Support tokens < > <= >= = ~ d-d
   var reToken = /^\s*([<>=~]{0,2})\s*(\d+)\s*$|^\s*(\d+)\s*\-\s*(\d+)\s*$/i;
   // noop func for hack
@@ -276,7 +218,6 @@ KISSY.add('gallery/DepartureLayer/1.1/index',function (S, UA, Store) {
     }
     return this.config(config);
   }
-
   UACheck.prototype = {
     constructor: UACheck,
     config: function (config) {
@@ -357,10 +298,10 @@ KISSY.add('gallery/DepartureLayer/1.1/index',function (S, UA, Store) {
       var self = this;
       var options = self.options;
       KISSY.use([
-        packagePath + 'toptip.js',
+        packagePath + '/toptip.js',
         options.theme ? 
           options.theme : 
-          packagePath + 'toptip.less.css'
+          packagePath + '/toptip.less.css'
       ], function (S, Toptip) {
         callback.call(self, Store, null, new Toptip().render(options.toptip).show());
       });
@@ -374,10 +315,10 @@ KISSY.add('gallery/DepartureLayer/1.1/index',function (S, UA, Store) {
       var self = this;
       var options = self.options;
       KISSY.use([
-        packagePath + 'dialog.js',
+        packagePath + '/dialog.js',
         options.theme ? 
           options.theme : 
-          packagePath + 'dialog.less.css'
+          packagePath + '/dialog.less.css'
       ], function (S, Dialog) {
         callback.call(self, Store, new Dialog().render(options.dialog).show());
       });
@@ -391,12 +332,12 @@ KISSY.add('gallery/DepartureLayer/1.1/index',function (S, UA, Store) {
     _showAll: function (callback) {
       var self = this;
       var options = self.options;
-      var modules = [packagePath + 'dialog.js',packagePath + 'toptip.js'];
+      var modules = [packagePath + '/dialog.js',packagePath + '/toptip.js'];
       if (options.theme) {
         modules.push(options.theme);
       } else {
-        modules.push(packagePath + 'dialog.less.css');
-        modules.push(packagePath + 'toptip.less.css');
+        modules.push(packagePath + '/dialog.less.css');
+        modules.push(packagePath + '/toptip.less.css');
       }
       KISSY.use(modules, function (S, Dialog, Toptip) {
         var toptip = new Toptip().render(options.toptip);
@@ -434,13 +375,11 @@ KISSY.add('gallery/DepartureLayer/1.1/index',function (S, UA, Store) {
     }
   };
   // for version check 
-  UACheck.VERSION = '1.0';
+  UACheck.VERSION = '1.1';
   return UACheck;
 }, {
   requires: [
     'ua',
-    './store.js',
-    './toptip.less.css',
-    './toptip.js'
+    './store.js'
   ]
 });
