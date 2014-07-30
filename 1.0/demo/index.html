@@ -21,23 +21,23 @@
 
 <script charset="utf-8">
     (function (S) {
-        if(S.Config.debug){
-            S.config({
-                packages:[
-                    {
-                        name:"gallery/DepartureLayer",
-                        path:"../../",
-                        charset:"utf-8",
-                        ignorePackageNameInUri:true
-                    }
-                ]
-            });
-        }
+        // if(S.Config.debug){
+        //     S.config({
+        //         packages:[
+        //             {
+        //                 name:"gallery/DepartureLayer",
+        //                 path:"../../",
+        //                 charset:"utf-8",
+        //                 ignorePackageNameInUri:true
+        //             }
+        //         ]
+        //     });
+        // }
         S.use('gallery/DepartureLayer/1.0/index,gallery/DepartureLayer/1.0/DepartureLayer.css', function (S, DepartureLayer) {
             var departureLayer = new DepartureLayer({
                 browser: [
                     { browser: 'ie', maxversion: '10'},
-                    { browser: 'chrome', maxversion: '36'}
+                    { browser: 'chrome', maxversion: '38'}
                 ]
             });
             departureLayer.show();

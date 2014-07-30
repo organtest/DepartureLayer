@@ -21,16 +21,16 @@
 
 <script charset="utf-8">
   (function (S) {
-    if(S.Config.debug) {
-      S.config({
-        packages:[{
-          name: 'gallery/DepartureLayer',
-          path: '../../',
-          charset: 'utf-8',
-          ignorePackageNameInUri: true
-        }]
-      });
-    }
+    // if(S.Config.debug) {
+    //   S.config({
+    //     packages:[{
+    //       name: 'gallery/DepartureLayer',
+    //       path: '../../',
+    //       charset: 'utf-8',
+    //       ignorePackageNameInUri: true
+    //     }]
+    //   });
+    // }
 
     S.use('gallery/DepartureLayer/1.1/index', function (S, DepartureLayer) {
       var killer = new DepartureLayer({
